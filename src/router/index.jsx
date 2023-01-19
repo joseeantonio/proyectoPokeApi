@@ -1,6 +1,7 @@
 import Home from "../pages/Home.jsx";
 import LayoutPublic from "../layouts/LayoutPublic.jsx";
 import {createBrowserRouter} from "react-router-dom";
+import Error from "../pages/Error.jsx";
 
 export const router = createBrowserRouter([
     {
