@@ -3,11 +3,13 @@ import {NavLink} from "react-router-dom";
 
 const Home = () => {
     return(
-        <main>
-            <h1>BIENVENIDO</h1>
-            <p>¿Seguro de empezar esta nueva aventura?</p>
-            <NavLink className="boton_principal" id="ancla" to="#">EMPEZAR</NavLink>
-        </main>
+        <div className='home'>
+            <main>
+                <h1>BIENVENIDO</h1>
+                <p>¿Seguro de empezar esta nueva aventura?</p>
+                <NavLink className="boton_principal" id="ancla" to="#">EMPEZAR</NavLink>
+            </main>
+        </div>
     )
 }
 export default Home

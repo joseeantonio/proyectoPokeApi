@@ -1,0 +1,20 @@
+
+.Footer{
+
+  footer { /*Le indicamos estilos al footer y lo alineamos */
+    background-color: $negro;
+    color: $blanco;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  footer > * {
+    padding: 1.4em;
+  }
+
+  @media (prefers-color-scheme: light) {
+    footer {background-color: $blanco;color: $negro}
+  }
+
+}

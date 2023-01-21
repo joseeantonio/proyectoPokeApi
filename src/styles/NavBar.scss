@@ -1,0 +1,79 @@
+
+.NavBar {
+  @import "src/styles/imports/_reset.scss", "src/styles/imports/variables";
+
+  header .menu_ordenador ul li a { /*Le damos collor blanco a las redirecciones del nav*/
+    color: $blanco;
+  }
+
+  header img { /*Un valor maximo a la imagen del logo*/
+    max-width: 120px;
+  }
+
+  .boton { /*Seleccionamos el resgistrarse y le creamos la caja con su color y sus estilos*/
+    background: $boton-registrarse;
+    border-radius: 5px;
+    text-align: center;
+    margin-right: 15px;
+    padding: 7px;
+    color: $blanco;
+  }
+
+  .menu_ordenador > ul div { /*Ponemos todos los li en la misma linea y creamos separacion entre cada uno de ellos*/
+    padding: 15px;
+    display: inline-block;
+  }
+
+  .textoo {
+    width: 80%;
+  }
+
+  .menu_ordenador > ul div li { /*Ponemos todos los li en la misma linea y creamos separacion entre cada uno de ellos*/
+    padding: 15px;
+    display: inline-block;
+  }
+
+  .section { /*Le damos color de fondo ,tamaño atodo lo que es el encabezado y lo alineamos con flex.*/
+    height: 63px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $negro;
+  }
+
+  .menu_hamburguesa { /*con el display none lo ocultamos para que no se muestre*/
+    background-color: transparent;
+    color: $blanco;
+    display: none;
+    cursor: pointer;
+    font-size: 30px;
+    margin-right: 20px;
+  }
+
+  .menu_movil { /*Hacemos lo mismo con el menu mocil para que no se muestre*/
+    display: none;
+    background-color: $negro;
+  }
+
+  .menu_movil ul { /*Le damos estilo a el menu movil*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu_movil li > a {
+    color: $blanco;
+    font-size: 15px;
+    margin: 10px;
+  }
+
+
+  .section {background-color: $blanco;}
+  header .menu_ordenador ul li a {color: $negro}
+  header .boton {color: $blanco}
+  .menu_ordenador > ul > li:last-child > a {color: $blanco}
+  .menu_hamburguesa {color: $negro}
+  header .menu_movil ul {background-color: $blanco}
+  .menu_movil li > a {color: $negro}
+
+}
