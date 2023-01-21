@@ -12,7 +12,7 @@ const NavBar = () => {
                         <ul>
                             {/*{user && (*/}
                                 <div>
-                                    <li><NavLink to="#">PERSONAJES</NavLink></li>
+                                    <li><NavLink to="/pokemons">PERSONAJES</NavLink></li>
                                     <li><NavLink to="#">CONTACTO</NavLink></li>
                                     <li><NavLink to="#">INICIAR SESION</NavLink></li>
                                     <li className="boton"><NavLink to="#">REGISTRARSE</NavLink></li>
