@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,WAAW;EACT,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM",
+"sources": ["Paginacion.scss"],
+"names": [],
+"file": "Paginacion.css"
+}

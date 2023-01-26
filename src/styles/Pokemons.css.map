@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACE,iBAAO;EACL,gBAAgB,EAAE,uBAAqB;EACvC,QAAQ,EAAE,QAAQ;EAClB,iBAAiB,EAAC,SAAS;EAC3B,eAAe,EAAE,KAAK;EACtB,mBAAmB,EAAE,MAAM;EAC3B,OAAO,EAAE,KAAK;EACd,WAAW,EAAE,MAAM;EACnB,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,MAAM,EAAE,IAAI",
+"sources": ["Pokemons.scss"],
+"names": [],
+"file": "Pokemons.css"
+}

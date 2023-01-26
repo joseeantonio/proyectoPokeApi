@@ -1,0 +1,13 @@
+.Pokemons section {
+  background-color: rgba(24, 95, 202, 0.75);
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: block;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  height: 100%; }
+
+/*# sourceMappingURL=Pokemons.css.map */
