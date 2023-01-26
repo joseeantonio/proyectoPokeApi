@@ -1,0 +1,12 @@
+.Pokemons{
+  section{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  background-color: rgba(24, 95, 202, 0.42);
+  padding: 50px 50px 50px 190px;
+
+}
