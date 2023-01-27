@@ -51,16 +51,23 @@ const Pokemons = () => {
                 ?
                 <h1>Cargando...</h1>
                 :
-                <section>
-                        {data.results.map(pokemon=>(
-                            <li key={pokemon.name}>
-                                <CardPokemon
-                                urlDetalles={pokemon.url}
-                                />
-                            </li>
-                        ))
-                        }
-                </section>
+                <div>
+                    <div className='encabezado' style={{ backgroundImage: "url(/img_fondo_encabezado.png)" }}>
+                        <h1>Listado de Pokemons</h1>
+                    </div>
+                    <section>
+                            {data.results.map(pokemon=>(
+                                <div className='pokemon'>
+                                    <li key={pokemon.name}>
+                                        <CardPokemon
+                                        urlDetalles={pokemon.url}
+                                        />
+                                    </li>
+                                </div>
+                            ))
+                            }
+                    </section>
+                </div>
             }
             <Paginacion
                 limit={limit}

@@ -7,6 +7,7 @@ const Paginacion = (props) => {
     return(
 
 
+
                 props.offset<=0
                 ?
                     (

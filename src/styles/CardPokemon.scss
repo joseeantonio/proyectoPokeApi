@@ -1,0 +1,26 @@
+.CardPokemon{
+
+
+  .carta{
+    background-color: white;
+    width: 287px;
+    height: 256px;
+    margin-top: 108px;
+    box-shadow: -5px 5px 5px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 29px;
+    text-align: center;
+  }
+
+  h3{
+    font-family: Inter;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 54px;
+    line-height: 65px;
+    text-align: center;
+    color: $negro;
+    margin-top: -35px;
+  }
+
+
+}

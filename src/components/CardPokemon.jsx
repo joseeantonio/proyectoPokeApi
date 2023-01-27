@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 
 const CardPokemon = (props) => {
 
@@ -6,6 +7,7 @@ const CardPokemon = (props) => {
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(true)
     const [url,setUrl] = useState(props.urlDetalles)
+    const [evolucion,setEvolucion] = useState([])
 
     async function getDatos(url) {
         try {
@@ -21,30 +23,29 @@ const CardPokemon = (props) => {
         }
         return
     }
+
     useEffect(()=>{
         getDatos(url)
     },[url])
 
 
+    function cogerEvoluciones() {
+
+    }
+
+
     return(
-        <div>
+        <div className='CardPokemon'>
             {
                 loading
                 ?
                     <h1>Cargando...</h1>
                     :
-                    <div className='cards' style={{width:'220px'}}>
-                        <div className='cards-header'>
-                            <h5 className='card-title'>Nº{data.id} </h5>
-                        </div>
-                        <div className='card-body'>
-                            <img src={data.sprites.front_default} alt="pokemon"/>
-                        </div>
-                        <div className='card-footer'>
-                            <p className='card-text text-capitalize'> {data.forms[0].name} </p>
-                        </div>
-                        <br/>
-                        <br/>
+                    <div className='carta'>
+                        <Link to={`/pokemons/${data.id}`}>
+                            <img src={data.sprites.front_default}/>
+                            <h3>{data.name}</h3>
+                        </Link>
                     </div>
             }
         </div>
