@@ -1,0 +1,77 @@
+/*
+Error: File to import not found or unreadable: src/styles/imports/_reset.scss.
+        on line 3 of styles/home.scss
+        from line 2 of todocss.scss
+
+1: .home{
+2: 
+3:   @import "src/styles/imports/_reset.scss", "src/styles/imports/variables";
+4: 
+5:   main { /*adaptamos el ancho y predeterminamos el ancho y metemos imagen de fondo con sus diferentes atributos*\/
+6:     width: 100%;
+7:     height: 700px;
+8:     background-size: cover;
+
+Backtrace:
+styles/home.scss:3
+todocss.scss:2
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/import_node.rb:67:in `rescue in import'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/import_node.rb:44:in `import'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/import_node.rb:28:in `imported_file'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/check_nesting.rb:108:in `rescue in invalid_import_parent?'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/check_nesting.rb:101:in `invalid_import_parent?'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/check_nesting.rb:171:in `try_send'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/check_nesting.rb:14:in `visit'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `map'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/check_nesting.rb:51:in `visit_children'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:38:in `visit'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/check_nesting.rb:17:in `visit'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `map'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/check_nesting.rb:51:in `visit_children'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/check_nesting.rb:59:in `visit_root'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/check_nesting.rb:17:in `visit'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:24:in `visit'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:324:in `block in visit_import'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/stack.rb:88:in `block in with_import'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/stack.rb:88:in `with_import'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:322:in `visit_import'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `map'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:157:in `visit'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:10:in `visit'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/root_node.rb:36:in `css_tree'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/engine.rb:307:in `render_with_sourcemap'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:387:in `run'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:63:in `process_result'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/exec/base.rb:50:in `parse'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/lib/sass/exec/base.rb:18:in `parse!'
+/var/lib/gems/3.0.0/gems/sass-3.7.4/bin/sass:13:in `<top (required)>'
+/usr/local/bin/sass:25:in `load'
+/usr/local/bin/sass:25:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: File to import not found or unreadable: src/styles/imports/_reset.scss.\A         on line 3 of styles/home.scss\A         from line 2 of todocss.scss\A \A 1: .home{\A 2: \A 3:   @import \"src/styles/imports/_reset.scss\", \"src/styles/imports/variables\";\A 4: \A 5:   main { /*adaptamos el ancho y predeterminamos el ancho y metemos imagen de fondo con sus diferentes atributos*/\A 6:     width: 100%;\A 7:     height: 700px;\A 8:     background-size: cover;"; }

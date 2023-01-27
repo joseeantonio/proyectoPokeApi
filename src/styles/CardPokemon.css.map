@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAGE,mBAAM;EACJ,gBAAgB,EAAE,KAAK;EACvB,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,KAAK;EACb,UAAU,EAAE,KAAK;EACjB,UAAU,EAAE,oCAAoC;EAChD,aAAa,EAAE,IAAI",
+"sources": ["CardPokemon.scss"],
+"names": [],
+"file": "CardPokemon.css"
+}
