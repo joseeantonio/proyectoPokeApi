@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import Paginacion from "./Paginacion.jsx";
 import CardPokemon from "./CardPokemon.jsx";
+import Busqueda from "./Busqueda.jsx";
+import Cards from "./Cards.jsx";
 
 const Pokemons = () => {
     const [data, setData] = useState({})
@@ -9,6 +11,11 @@ const Pokemons = () => {
     const [limit,setLimit] = useState(21)
     const [offset,setOffset] = useState(0)
     const [pagina,setPagina] = useState(1)
+
+
+
+
+
 
 
     function pagAnterior() {
@@ -55,18 +62,10 @@ const Pokemons = () => {
                     <div className='encabezado' style={{ backgroundImage: "url(/img_fondo_encabezado.png)" }}>
                         <h1>Listado de Pokemons</h1>
                     </div>
-                    <section>
-                            {data.results.map(pokemon=>(
-                                <div className='pokemon'>
-                                    <li key={pokemon.name}>
-                                        <CardPokemon
-                                        urlDetalles={pokemon.url}
-                                        />
-                                    </li>
-                                </div>
-                            ))
-                            }
-                    </section>
+                    <Busqueda/>
+                    <Cards
+                        pokemons={data.results}
+                    />
                 </div>
             }
             <Paginacion
