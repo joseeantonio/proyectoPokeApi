@@ -10,11 +10,14 @@ const Pokemons = () => {
     const [offset,setOffset] = useState(0)
     const [pagina,setPagina] = useState(1)
 
+    //todos los pokemons
     const [todosLosPokemons,setTodosLosPokemons] = useState([])
+    //lo que busco
     const [busqueda,setBusqueda] = useState('')
+    //pokemons de la busqueda
     let [pokemonBusqueda,setPokemonBusqueda] = useState([])
+    //variable de si estoy buscando o no
     const [buscando,setBuscando] = useState(false)
-
     //cojo datos que escribe en la busqueda
     const handleChange=(e)=>{
         setBusqueda(e.target.value)
