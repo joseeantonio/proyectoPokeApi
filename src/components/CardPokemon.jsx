@@ -15,7 +15,6 @@ const CardPokemon = (props) => {
             const resp = await fetch(url)
             const data = await resp.json()
             setData(data)
-
         }catch (e){
             setError('No se ha podido coger los datos de la api')
         }finally {
@@ -27,12 +26,6 @@ const CardPokemon = (props) => {
     useEffect(()=>{
         getDatos(url)
     },[url])
-
-
-    function cogerEvoluciones() {
-
-    }
-
 
     return(
         <div className='CardPokemon'>

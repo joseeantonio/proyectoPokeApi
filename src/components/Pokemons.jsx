@@ -106,13 +106,15 @@ const Pokemons = () => {
                     <div className='encabezado' style={{ backgroundImage: "url(/img_fondo_encabezado.png)" }}>
                         <h1>Listado de Pokemons</h1>
                     </div>
-                    <input
-                        type="search"
-                        value={busqueda}
-                        onChange={handleChange}
-                        placeholder="Buscar por nombre o por id"
-                    />
-                    <button onClick={buscar}>buscar</button>
+                    <div className='input-busqueda'>
+                        <input
+                            type="search"
+                            value={busqueda}
+                            onChange={handleChange}
+                            placeholder="Buscar por nombre o por id"
+                        />
+                        <button onClick={buscar}>buscar</button>
+                    </div>
                     {!buscando ?
                         <div>
                             <Cards
