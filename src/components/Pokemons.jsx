@@ -15,10 +15,12 @@ const Pokemons = () => {
     let [pokemonBusqueda,setPokemonBusqueda] = useState([])
     const [buscando,setBuscando] = useState(false)
 
+    //cojo datos que escribe en la busqueda
     const handleChange=(e)=>{
         setBusqueda(e.target.value)
     }
 
+    //funcion que llamo dentro de otra funcion para añadir pokemon a mostrar de la busqueda
     function añadirPokemon(nombre){
         for (let i=0;i<todosLosPokemons.length;i++){
             debugger
@@ -31,7 +33,7 @@ const Pokemons = () => {
             }
         }
     }
-
+    //funcion de busqueda
     const buscar = () => {
         const nombre = busqueda
         if (nombre.length===0){
@@ -44,12 +46,7 @@ const Pokemons = () => {
                 añadirPokemon(nombre)
         }
     }
-
-
-
-
-
-
+    //PAGINACION
     function pagAnterior() {
         if (offset-21<0){
             setOffset(0)
@@ -59,13 +56,13 @@ const Pokemons = () => {
         }
         ObetenerDatosApi()
     }
-
     async function pagSiguiente() {
         setOffset(offset + 21)
         setPagina(pagina+1)
         ObetenerDatosApi()
     }
 
+    //Funcion para coger 21 pokemons segun su offset
     const ObetenerDatosApi = async () => {
         try {
             let api = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`)
@@ -78,6 +75,7 @@ const Pokemons = () => {
         }
         return
     }
+    //cojo todos los pokemons para filtrar la busqueda
     const ObetenerDatosApiTodosPokemons = async () => {
         try {
             let api = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=300&offset=0`)
@@ -90,15 +88,13 @@ const Pokemons = () => {
         }
         return
     }
-
     useEffect(()=>{
         ObetenerDatosApiTodosPokemons()
     },[])
-
+    //este useEffect sirev para cuando cambie el offset llame a la funcion , esto nos sirve para la paginacion
     useEffect(()=>{
         ObetenerDatosApi()
     },[offset])
-
 
     return (
         <div className='Pokemons'>

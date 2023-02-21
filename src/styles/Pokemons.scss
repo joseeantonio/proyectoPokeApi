@@ -2,9 +2,10 @@
   section{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
     gap: 20px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto 100px;
   }
   h1{
     text-align: center;
