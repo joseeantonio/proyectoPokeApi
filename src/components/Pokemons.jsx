@@ -1,9 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Paginacion from "./Paginacion.jsx";
-import CardPokemon from "./CardPokemon.jsx";
-import Busqueda from "./Busqueda.jsx";
 import Cards from "./Cards.jsx";
-import useFetch from "./UseFetch.jsx";
 
 const Pokemons = () => {
     const [data, setData] = useState({})
@@ -39,7 +36,8 @@ const Pokemons = () => {
         const nombre = busqueda
         if (nombre.length===0){
             setBuscando(false)
-            // console.log(buscando)
+            setOffset(0)
+            setPagina(1)
         }else{
             setPokemonBusqueda((pokemonBusqueda=[]))
             setBuscando(true)
