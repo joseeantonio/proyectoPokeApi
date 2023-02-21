@@ -3,7 +3,7 @@ import LayoutPublic from "../layouts/LayoutPublic.jsx";
 import {createBrowserRouter} from "react-router-dom";
 import Error from "../pages/Error.jsx";
 import Pokemons from "../components/Pokemons.jsx";
-import Pokemon from "../components/Pokemon.jsx";
+import DetallesPokemon from "../components/DetallesPokemon.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
                 element : <Pokemons />
             },{
                 path: '/pokemons/:id',
-                element: <Pokemon />,
+                element: <DetallesPokemon />,
             },
         ],
     },
