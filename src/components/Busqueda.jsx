@@ -11,7 +11,8 @@ const Busqueda = () => {
         if (busqueda === "") {
             return;
         }else{
-
+            navigate(`/busqueda/${busqueda}`)
+            setBusqueda('')
         }
     }
 

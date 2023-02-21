@@ -3,6 +3,7 @@ import Paginacion from "./Paginacion.jsx";
 import CardPokemon from "./CardPokemon.jsx";
 import Busqueda from "./Busqueda.jsx";
 import Cards from "./Cards.jsx";
+import useFetch from "./UseFetch.jsx";
 
 const Pokemons = () => {
     const [data, setData] = useState({})
@@ -12,6 +13,39 @@ const Pokemons = () => {
     const [offset,setOffset] = useState(0)
     const [pagina,setPagina] = useState(1)
 
+    const [todosLosPokemons,setTodosLosPokemons] = useState([])
+    const [busqueda,setBusqueda] = useState('')
+    let [pokemonBusqueda,setPokemonBusqueda] = useState([])
+    const [buscando,setBuscando] = useState(false)
+
+    const handleChange=(e)=>{
+        setBusqueda(e.target.value)
+    }
+
+    function añadirPokemon(nombre){
+        for (let i=0;i<todosLosPokemons.length;i++){
+            debugger
+            if (pokemonBusqueda.length<21){
+                if (todosLosPokemons[i].name.toString().toLowerCase().includes(nombre.toLowerCase())){
+                    pokemonBusqueda.push(todosLosPokemons[i])
+                }
+            }else{
+                return
+            }
+        }
+    }
+
+    const buscar = () => {
+        const nombre = busqueda
+        if (nombre.length===0){
+            setBuscando(false)
+            // console.log(buscando)
+        }else{
+            setPokemonBusqueda((pokemonBusqueda=[]))
+            setBuscando(true)
+                añadirPokemon(nombre)
+        }
+    }
 
 
 
@@ -46,6 +80,22 @@ const Pokemons = () => {
         }
         return
     }
+    const ObetenerDatosApiTodosPokemons = async () => {
+        try {
+            let api = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=300&offset=0`)
+            let datos = await api.json()
+            setTodosLosPokemons(datos.results)
+        }catch (e){
+            setError('No se ha podido coger los datos de la api')
+        }finally {
+            setLoading(false)
+        }
+        return
+    }
+
+    useEffect(()=>{
+        ObetenerDatosApiTodosPokemons()
+    },[])
 
     useEffect(()=>{
         ObetenerDatosApi()
@@ -62,19 +112,36 @@ const Pokemons = () => {
                     <div className='encabezado' style={{ backgroundImage: "url(/img_fondo_encabezado.png)" }}>
                         <h1>Listado de Pokemons</h1>
                     </div>
-                    <Busqueda/>
-                    <Cards
-                        pokemons={data.results}
+                    <input
+                        type="search"
+                        value={busqueda}
+                        onChange={handleChange}
+                        placeholder="Buscar por nombre o por id"
                     />
+                    <button onClick={buscar}>buscar</button>
+                    {!buscando ?
+                        <div>
+                            <Cards
+                                pokemons={data.results}
+                            />
+                            <Paginacion
+                                limit={limit}
+                                offset={offset}
+                                pagAnterior={pagAnterior}
+                                pagSiguiente={pagSiguiente}
+                                pagina={pagina}
+                            />
+                        </div>
+                        :
+                        <div>
+                            <h1>PRIMEROS 21 RESULTADOS</h1>
+                            <Cards
+                                pokemons={pokemonBusqueda}
+                            />
+                        </div>
+                    }
                 </div>
             }
-            <Paginacion
-                limit={limit}
-                offset={offset}
-                pagAnterior={pagAnterior}
-                pagSiguiente={pagSiguiente}
-                pagina={pagina}
-            />
         </div>
     )
 }

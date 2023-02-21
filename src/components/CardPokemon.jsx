@@ -10,6 +10,7 @@ const CardPokemon = (props) => {
     const [evolucion,setEvolucion] = useState([])
 
     async function getDatos(url) {
+        debugger
         try {
             const resp = await fetch(url)
             const data = await resp.json()

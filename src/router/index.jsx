@@ -4,7 +4,6 @@ import {createBrowserRouter} from "react-router-dom";
 import Error from "../pages/Error.jsx";
 import Pokemons from "../components/Pokemons.jsx";
 import Pokemon from "../components/Pokemon.jsx";
-import PaginaBusqueda from "../pages/PaginaBusqueda.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -22,9 +21,6 @@ export const router = createBrowserRouter([
             },{
                 path: '/pokemons/:id',
                 element: <Pokemon />,
-            },{
-                path: '/busqueda/:nombre',
-                element: <PaginaBusqueda />,
             },
         ],
     },
