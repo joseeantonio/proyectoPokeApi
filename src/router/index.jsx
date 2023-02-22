@@ -2,8 +2,8 @@ import Home from "../pages/Home.jsx";
 import LayoutPublic from "../layouts/LayoutPublic.jsx";
 import {createBrowserRouter} from "react-router-dom";
 import Error from "../pages/Error.jsx";
-import Pokemons from "../components/Pokemons.jsx";
-import DetallesPokemon from "../components/DetallesPokemon.jsx";
+import Pokemons from "../pages/Pokemons.jsx";
+import DetallesPokemon from "../pages/DetallesPokemon.jsx";
 
 export const router = createBrowserRouter([
     {

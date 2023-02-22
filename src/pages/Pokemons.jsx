@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import Paginacion from "./Paginacion.jsx";
-import Cards from "./Cards.jsx";
+import Paginacion from "../components/Paginacion.jsx";
+import Cards from "../components/Cards.jsx";
 
 const Pokemons = () => {
     const [data, setData] = useState({})
