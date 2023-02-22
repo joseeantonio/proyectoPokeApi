@@ -28,7 +28,17 @@ const Pokemons = () => {
         for (let i=0;i<todosLosPokemons.length;i++){
             debugger
             if (pokemonBusqueda.length<21){
-                if (todosLosPokemons[i].name.toString().toLowerCase().includes(nombre.toLowerCase())){
+                if (!isNaN(busqueda)){
+                    const split = todosLosPokemons[i].url.split("/")
+                    // console.log(split)
+                    const idPokemon = split[6]
+                    // console.log(idPokemon)
+                    debugger
+                    if (idPokemon===busqueda){
+                        pokemonBusqueda.push(todosLosPokemons[i])
+                    }
+                }
+                else if (todosLosPokemons[i].name.toString().toLowerCase().includes(nombre.toLowerCase())){
                     pokemonBusqueda.push(todosLosPokemons[i])
                 }
             }else{
