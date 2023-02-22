@@ -81,7 +81,7 @@ const Pokemons = () => {
     //cojo todos los pokemons para filtrar la busqueda
     const ObetenerDatosApiTodosPokemons = async () => {
         try {
-            let api = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=300&offset=0`)
+            let api = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`)
             let datos = await api.json()
             setTodosLosPokemons(datos.results)
         }catch (e){
