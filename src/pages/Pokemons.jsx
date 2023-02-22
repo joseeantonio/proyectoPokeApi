@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Paginacion from "../components/Paginacion.jsx";
 import Cards from "../components/Cards.jsx";
+import Filtros from "../components/Filtros.jsx";
 
 const Pokemons = () => {
     const [data, setData] = useState({})
@@ -22,7 +23,6 @@ const Pokemons = () => {
     const handleChange=(e)=>{
         setBusqueda(e.target.value)
     }
-
     //funcion que llamo dentro de otra funcion para añadir pokemon a mostrar de la busqueda
     function añadirPokemon(nombre){
         for (let i=0;i<todosLosPokemons.length;i++){
@@ -74,7 +74,6 @@ const Pokemons = () => {
         setPagina(pagina+1)
         ObetenerDatosApi()
     }
-
     //Funcion para coger 21 pokemons segun su offset
     const ObetenerDatosApi = async () => {
         try {
@@ -109,6 +108,18 @@ const Pokemons = () => {
         ObetenerDatosApi()
     },[offset])
 
+
+    const buscarFiltros = async (tipo) => {
+        setPokemonBusqueda((pokemonBusqueda = []))
+        for (let i = 0; i < todosLosPokemons.length; i++) {
+            let api = await fetch(`https://pokeapi.co/api/v2/type/${todosLosPokemons[i].name}`)
+            let datos = await api.json()
+            let tipoPokemon = datos.name
+        }
+
+
+    }
+
     return (
         <div className='Pokemons'>
             {loading
@@ -127,6 +138,9 @@ const Pokemons = () => {
                             placeholder="Buscar por nombre o por id"
                         />
                         <button onClick={buscar}>buscar</button>
+                    </div>
+                    <div className='filtros'>
+                        <Filtros/>
                     </div>
                     {!buscando ?
                         <div>
