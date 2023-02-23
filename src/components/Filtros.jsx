@@ -4,10 +4,11 @@ import pokemons from "../pages/Pokemons.jsx";
 const Filtros = (props) => {
 
     const [tipo,setTipo] = useState(null)
-    const [pokemonsBusqueda,setPokemonsBusqueda] = useState([])
+    let [pokemonsBusqueda,setPokemonsBusqueda] = useState([])
     const [todosPokemons,setTodosPokemons] = useState(props.pokemons)
 
     const buscarPorTipo = async () => {
+        setPokemonsBusqueda((pokemonsBusqueda=[]))
         for (let i = 0; i < todosPokemons.length; i++) {
             if (pokemonsBusqueda.length < 21) {
                 let api = await fetch(`https://pokeapi.co/api/v2/pokemon/${todosPokemons[i].name}`)
@@ -35,7 +36,7 @@ const Filtros = (props) => {
                     <option value="ground">Tierra</option>
                     <option value="rock">Roca</option>
                     <option value="bug">Bicho</option>
-                    <option value="poison">Fantasma</option>
+                    <option value="ghost">Fantasma</option>
                     <option value="steel">Acero</option>
                     <option value="fire">Fuego</option>
                     <option value="water">Agua</option>
