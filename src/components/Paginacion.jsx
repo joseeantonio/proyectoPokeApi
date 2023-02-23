@@ -1,13 +1,7 @@
 import React from "react";
 
 const Paginacion = (props) => {
-
-    //console.log(props)
-
     return(
-
-
-
                 props.offset<=0
                 ?
                     (
@@ -25,6 +19,6 @@ const Paginacion = (props) => {
                         </div>
                     )
     )
-
 }
+
 export default Paginacion

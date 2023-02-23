@@ -1,6 +1,6 @@
 
 .NavBar {
-  @import "src/styles/imports/_reset.scss", "src/styles/imports/variables";
+  @import "src/assets/styles/imports/_reset.scss", "src/assets/styles/imports/variables.scss";
 
   header .menu_ordenador ul li a { /*Le damos collor blanco a las redirecciones del nav*/
     color: $blanco;

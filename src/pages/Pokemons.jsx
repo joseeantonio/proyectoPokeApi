@@ -4,7 +4,7 @@ import Cards from "../components/Cards.jsx";
 import Filtros from "../components/Filtros.jsx";
 
 const Pokemons = () => {
-    const [data, setData] = useState({})
+    const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [limit,setLimit] = useState(21)
@@ -26,7 +26,6 @@ const Pokemons = () => {
     //funcion que llamo dentro de otra funcion para añadir pokemon a mostrar de la busqueda
     function añadirPokemon(nombre){
         for (let i=0;i<todosLosPokemons.length;i++){
-            debugger
             if (pokemonBusqueda.length<21){
                 if (!isNaN(busqueda)){
                     const split = todosLosPokemons[i].url.split("/")
@@ -109,16 +108,14 @@ const Pokemons = () => {
     },[offset])
 
 
-    const buscarFiltros = async (tipo) => {
-        setPokemonBusqueda((pokemonBusqueda = []))
-        for (let i = 0; i < todosLosPokemons.length; i++) {
-            let api = await fetch(`https://pokeapi.co/api/v2/type/${todosLosPokemons[i].name}`)
-            let datos = await api.json()
-            let tipoPokemon = datos.name
-        }
-
-
-    }
+    // const buscarFiltros = async (tipo) => {
+    //     setPokemonBusqueda((pokemonBusqueda = []))
+    //     for (let i = 0; i < todosLosPokemons.length; i++) {
+    //         let api = await fetch(`https://pokeapi.co/api/v2/type/${todosLosPokemons[i].name}`)
+    //         let datos = await api.json()
+    //         let tipoPokemon = datos.name
+    //     }
+    // }
 
     return (
         <div className='Pokemons'>
@@ -140,7 +137,9 @@ const Pokemons = () => {
                         <button onClick={buscar}>buscar</button>
                     </div>
                     <div className='filtros'>
-                        <Filtros/>
+                        <Filtros
+                            pokemons={todosLosPokemons}
+                        />
                     </div>
                     {!buscando ?
                         <div>

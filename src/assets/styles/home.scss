@@ -1,6 +1,6 @@
 .home{
 
-  @import "src/styles/imports/_reset.scss", "src/styles/imports/variables";
+  @import "src/assets/styles/imports/_reset.scss", "src/assets/styles/imports/variables.scss";
 
   main { /*adaptamos el ancho y predeterminamos el ancho y metemos imagen de fondo con sus diferentes atributos*/
     width: 100%;

@@ -1,11 +1,32 @@
-import React from "react";
+import React, {useState} from "react";
+import pokemons from "../pages/Pokemons.jsx";
 
-const Filtros = () => {
+const Filtros = (props) => {
+
+    const [tipo,setTipo] = useState(null)
+    const [pokemonsBusqueda,setPokemonsBusqueda] = useState([])
+    const [todosPokemons,setTodosPokemons] = useState(props.pokemons)
+
+    const buscarPorTipo = async () => {
+        for (let i = 0; i < todosPokemons.length; i++) {
+            if (pokemonsBusqueda.length < 21) {
+                let api = await fetch(`https://pokeapi.co/api/v2/pokemon/${todosPokemons[i].name}`)
+                let datos = await api.json()
+                let tiposPokemon = []
+                for (let x=0;x<datos.types.length;x++) {
+                    tiposPokemon.push(datos.types[x].type.name)
+                }
+                if (tiposPokemon.includes('grass')) {
+                    pokemonsBusqueda.push(todosPokemons[i])
+                }
+            }
+        }
+        console.log(pokemonsBusqueda)
+    }
 
     return(
         <div className='tipos'>
-            <form action="#">
-                <select name='tipos'>
+                <select name='tipos' value={tipo} onChange={ (e) => setTipo( e.target.value) }>
                     <option value="hierba">Hierba</option>
                     <option value="normal">Normal</option>
                     <option value="luchador">Luchador</option>
@@ -27,8 +48,7 @@ const Filtros = () => {
                     <option value="desconocido">Desconocido</option>
                     <option value="sombra">Sombra</option>
                 </select>
-                <input type="submit" value='Buscar'/>
-            </form>
+            <button onClick={buscarPorTipo}>Buscar</button>
         </div>
     )
 
