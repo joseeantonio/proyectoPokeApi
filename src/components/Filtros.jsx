@@ -16,7 +16,7 @@ const Filtros = (props) => {
                 for (let x=0;x<datos.types.length;x++) {
                     tiposPokemon.push(datos.types[x].type.name)
                 }
-                if (tiposPokemon.includes('grass')) {
+                if (tiposPokemon.includes(tipo)) {
                     pokemonsBusqueda.push(todosPokemons[i])
                 }
             }
@@ -27,26 +27,24 @@ const Filtros = (props) => {
     return(
         <div className='tipos'>
                 <select name='tipos' value={tipo} onChange={ (e) => setTipo( e.target.value) }>
-                    <option value="hierba">Hierba</option>
+                    <option value="grass">Planta</option>
                     <option value="normal">Normal</option>
-                    <option value="luchador">Luchador</option>
-                    <option value="volador">Volador</option>
-                    <option value="veneno">Veneno</option>
-                    <option value="tierra">Tierra</option>
-                    <option value="roca">Roca</option>
-                    <option value="bicho">Bicho</option>
-                    <option value="fantasma">Fantasma</option>
-                    <option value="acero">Acero</option>
-                    <option value="fuego">Fuego</option>
-                    <option value="agua">Agua</option>
-                    <option value="electrico">Electrico</option>
-                    <option value="psiquico">Psiquico</option>
-                    <option value="hielo">Hielo</option>
+                    <option value="fighting">Luchador</option>
+                    <option value="flying">Volador</option>
+                    <option value="poison">Veneno</option>
+                    <option value="ground">Tierra</option>
+                    <option value="rock">Roca</option>
+                    <option value="bug">Bicho</option>
+                    <option value="poison">Fantasma</option>
+                    <option value="steel">Acero</option>
+                    <option value="fire">Fuego</option>
+                    <option value="water">Agua</option>
+                    <option value="electric">Electrico</option>
+                    <option value="psychic">Psiquico</option>
+                    <option value="ice">Hielo</option>
                     <option value="dragon">Dragon</option>
-                    <option value="oscuro">Oscuro</option>
-                    <option value="hada">Hada</option>
-                    <option value="desconocido">Desconocido</option>
-                    <option value="sombra">Sombra</option>
+                    <option value="dark">Oscuro</option>
+                    <option value="fairy">Hada</option>
                 </select>
             <button onClick={buscarPorTipo}>Buscar</button>
         </div>
