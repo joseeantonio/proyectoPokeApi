@@ -99,6 +99,32 @@ const Pokemons = () => {
         }
         return
     }
+
+    const [buscandoPorFiltros,setBuscandoPorFiltros] = useState(false)
+    const [tipo,setTipo] = useState(null)
+    let [pokemonsBusqueda,setPokemonsBusqueda] = useState([])
+
+    const buscarPorTipo = async () => {
+        setLoading(true)
+        setPokemonsBusqueda((pokemonsBusqueda=[]))
+        for (let i = 0; i < todosLosPokemons.length; i++) {
+            if (pokemonsBusqueda.length < 21) {
+                let api = await fetch(`https://pokeapi.co/api/v2/pokemon/${todosLosPokemons[i].name}`)
+                let datos = await api.json()
+                let tiposPokemon = []
+                for (let x=0;x<datos.types.length;x++) {
+                    tiposPokemon.push(datos.types[x].type.name)
+                }
+                if (tiposPokemon.includes(tipo)) {
+                    pokemonsBusqueda.push(todosLosPokemons[i])
+                }
+            }
+        }
+        setBuscandoPorFiltros(true)
+        setLoading(false)
+        console.log(pokemonsBusqueda)
+    }
+
     useEffect(()=>{
         ObetenerDatosApiTodosPokemons()
     },[])
@@ -107,15 +133,10 @@ const Pokemons = () => {
         ObetenerDatosApi()
     },[offset])
 
+    // useEffect(()=>{
+    //     buscarPorTipo()
+    // },[tipo])
 
-    // const buscarFiltros = async (tipo) => {
-    //     setPokemonBusqueda((pokemonBusqueda = []))
-    //     for (let i = 0; i < todosLosPokemons.length; i++) {
-    //         let api = await fetch(`https://pokeapi.co/api/v2/type/${todosLosPokemons[i].name}`)
-    //         let datos = await api.json()
-    //         let tipoPokemon = datos.name
-    //     }
-    // }
 
     return (
         <div className='Pokemons'>
@@ -138,29 +159,37 @@ const Pokemons = () => {
                     </div>
                     <div className='filtros'>
                         <Filtros
-                            pokemons={todosLosPokemons}
+                            buscarPorTipo={buscarPorTipo}
+                            pokemonsBusqueda={pokemonsBusqueda}
+                            tipo={tipo}
+                            setTipo={setTipo}
                         />
                     </div>
-                    {!buscando ?
+
+                    {buscandoPorFiltros && tipo ?
                         <div>
-                            <Cards
-                                pokemons={data.results}
-                            />
-                            <Paginacion
-                                limit={limit}
-                                offset={offset}
-                                pagAnterior={pagAnterior}
-                                pagSiguiente={pagSiguiente}
-                                pagina={pagina}
-                            />
+                            <Cards pokemons={pokemonsBusqueda}/>
                         </div>
-                        :
-                        <div>
-                            <h1>PRIMEROS 21 RESULTADOS</h1>
-                            <Cards
-                                pokemons={pokemonBusqueda}
-                            />
-                        </div>
+                        : !buscando ?
+                            <div>
+                                <Cards
+                                    pokemons={data.results}
+                                />
+                                <Paginacion
+                                    limit={limit}
+                                    offset={offset}
+                                    pagAnterior={pagAnterior}
+                                    pagSiguiente={pagSiguiente}
+                                    pagina={pagina}
+                                />
+                            </div>
+                            :
+                            <div>
+                                <h1>PRIMEROS 21 RESULTADOS</h1>
+                                <Cards
+                                    pokemons={pokemonBusqueda}
+                                />
+                            </div>
                     }
                 </div>
             }
