@@ -102,6 +102,7 @@ const Pokemons = () => {
 
     const [buscandoPorFiltros,setBuscandoPorFiltros] = useState(false)
     const [tipo,setTipo] = useState(null)
+    const [generacion,setGeneracion] = useState(null)
     let [pokemonsFiltros,setPokemonsFiltros] = useState([])
 
     const buscarPorTipo = async () => {
@@ -116,7 +117,12 @@ const Pokemons = () => {
                 for (let x=0;x<datos.types.length;x++) {
                     tiposPokemon.push(datos.types[x].type.name)
                 }
-                if (tiposPokemon.includes(tipo)) {
+                let generaciones = []
+                for (let y=0;y<datos.past_types.length;y++){
+                    debugger
+                    generaciones.push(datos.past_types[y].generation.name)
+                }
+                if (tiposPokemon.includes(tipo) && generaciones.includes(generacion)){
                     pokemonsFiltros.push(todosLosPokemons[i])
                 }
             }
@@ -135,7 +141,7 @@ const Pokemons = () => {
 
     useEffect(()=>{
         buscarPorTipo()
-    },[tipo])
+    },[tipo,generacion])
 
 
     return (
@@ -163,6 +169,8 @@ const Pokemons = () => {
                             pokemonsBusqueda={pokemonsFiltros}
                             tipo={tipo}
                             setTipo={setTipo}
+                            generacion={generacion}
+                            setGeneracion={setGeneracion}
                         />
                     </div>
 
