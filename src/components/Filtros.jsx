@@ -5,6 +5,7 @@ const Filtros = (props) => {
     return(
         <div className='tipos'>
                 <select name='tipos' value={props.tipo} onChange={ (e) => props.setTipo( e.target.value) }>
+                    <option value="all">Todos</option>
                     <option value="grass">Planta</option>
                     <option value="normal">Normal</option>
                     <option value="fighting">Luchador</option>
@@ -24,7 +25,7 @@ const Filtros = (props) => {
                     <option value="dark">Oscuro</option>
                     <option value="fairy">Hada</option>
                 </select>
-            <button onClick={props.buscarPorTipo}>Buscar</button>
+            {/*<button onClick={props.buscarPorTipo}>Buscar</button>*/}
         </div>
     )
 

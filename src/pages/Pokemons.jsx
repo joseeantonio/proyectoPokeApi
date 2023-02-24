@@ -102,13 +102,14 @@ const Pokemons = () => {
 
     const [buscandoPorFiltros,setBuscandoPorFiltros] = useState(false)
     const [tipo,setTipo] = useState(null)
-    let [pokemonsBusqueda,setPokemonsBusqueda] = useState([])
+    let [pokemonsFiltros,setPokemonsFiltros] = useState([])
 
     const buscarPorTipo = async () => {
+        setPokemonsFiltros((pokemonsFiltros=[]))
+        if (tipo==='all'){return}
         setLoading(true)
-        setPokemonsBusqueda((pokemonsBusqueda=[]))
         for (let i = 0; i < todosLosPokemons.length; i++) {
-            if (pokemonsBusqueda.length < 21) {
+            if (pokemonsFiltros.length < 21) {
                 let api = await fetch(`https://pokeapi.co/api/v2/pokemon/${todosLosPokemons[i].name}`)
                 let datos = await api.json()
                 let tiposPokemon = []
@@ -116,13 +117,12 @@ const Pokemons = () => {
                     tiposPokemon.push(datos.types[x].type.name)
                 }
                 if (tiposPokemon.includes(tipo)) {
-                    pokemonsBusqueda.push(todosLosPokemons[i])
+                    pokemonsFiltros.push(todosLosPokemons[i])
                 }
             }
         }
         setBuscandoPorFiltros(true)
         setLoading(false)
-        console.log(pokemonsBusqueda)
     }
 
     useEffect(()=>{
@@ -133,9 +133,9 @@ const Pokemons = () => {
         ObetenerDatosApi()
     },[offset])
 
-    // useEffect(()=>{
-    //     buscarPorTipo()
-    // },[tipo])
+    useEffect(()=>{
+        buscarPorTipo()
+    },[tipo])
 
 
     return (
@@ -160,16 +160,16 @@ const Pokemons = () => {
                     <div className='filtros'>
                         <Filtros
                             buscarPorTipo={buscarPorTipo}
-                            pokemonsBusqueda={pokemonsBusqueda}
+                            pokemonsBusqueda={pokemonsFiltros}
                             tipo={tipo}
                             setTipo={setTipo}
                         />
                     </div>
 
-                    {buscandoPorFiltros && tipo ?
+                    {buscandoPorFiltros && tipo && pokemonsFiltros.length>0 ?
                         <div>
-                            <h1>Primeros resultados ({pokemonsBusqueda.length})</h1>
-                            <Cards pokemons={pokemonsBusqueda}/>
+                            <h1>Primeros resultados ({pokemonsFiltros.length})</h1>
+                            <Cards pokemons={pokemonsFiltros}/>
                         </div>
                         : !buscando ?
                             <div>
@@ -186,7 +186,7 @@ const Pokemons = () => {
                             </div>
                             :
                             <div>
-                                <h1>PRIMEROS 21 RESULTADOS</h1>
+                                <h1>Primeros resultados ({pokemonBusqueda.length})</h1>
                                 <Cards
                                     pokemons={pokemonBusqueda}
                                 />
