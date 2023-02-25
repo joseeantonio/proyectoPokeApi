@@ -136,6 +136,7 @@ const Pokemons = () => {
                         pokemonsFiltros.push(todosLosPokemons[i])
                     }
                 }
+            //    FILTRAR POR HABILIDADES
             }
         }
         setBuscandoPorFiltros(true)
