@@ -101,15 +101,15 @@ const Pokemons = () => {
     }
 
     const [buscandoPorFiltros,setBuscandoPorFiltros] = useState(false)
-    const [tipo,setTipo] = useState(null)
-    const [generacion,setGeneracion] = useState(null)
+    const [tipo,setTipo] = useState('all')
+    const [generacion,setGeneracion] = useState('all')
     let [pokemonsFiltros,setPokemonsFiltros] = useState([])
 
     const buscarPorTipo = async () => {
         setPokemonsFiltros((pokemonsFiltros=[]))
-        if (tipo==='all'){return}
         setLoading(true)
         for (let i = 0; i < todosLosPokemons.length; i++) {
+            debugger
             if (pokemonsFiltros.length < 21) {
                 let api = await fetch(`https://pokeapi.co/api/v2/pokemon/${todosLosPokemons[i].name}`)
                 let datos = await api.json()
@@ -119,11 +119,22 @@ const Pokemons = () => {
                 }
                 let generaciones = []
                 for (let y=0;y<datos.past_types.length;y++){
-                    debugger
                     generaciones.push(datos.past_types[y].generation.name)
                 }
-                if (tiposPokemon.includes(tipo) && generaciones.includes(generacion)){
-                    pokemonsFiltros.push(todosLosPokemons[i])
+                if (tipo==='all' && generacion!=='all'){
+                    if (generaciones.includes(generacion) ){
+                        pokemonsFiltros.push(todosLosPokemons[i])
+                    }
+                }else if (generacion==='all' && tipo!=='all'){
+                    debugger
+                    if (tiposPokemon.includes(tipo)){
+                        pokemonsFiltros.push(todosLosPokemons[i])
+                    }
+                    debugger
+                }else if (tipo!=='all' && generacion!=='all'){
+                    if (tiposPokemon.includes(tipo) && generaciones.includes(generacion)){
+                        pokemonsFiltros.push(todosLosPokemons[i])
+                    }
                 }
             }
         }
@@ -141,7 +152,7 @@ const Pokemons = () => {
 
     useEffect(()=>{
         buscarPorTipo()
-    },[tipo,generacion])
+    },[generacion,tipo])
 
 
     return (
