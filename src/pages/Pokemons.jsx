@@ -152,6 +152,10 @@ const Pokemons = () => {
                     if (tiposPokemon.includes(tipo) && generaciones.includes(generacion) && habilidades.includes(habilidad)){
                         pokemonsFiltros.push(todosLosPokemons[i])
                     }
+                }else if(tipo!=='all' && generacion==='all' && habilidad!=='all'){
+                    if (tiposPokemon.includes(tipo) && habilidades.includes(habilidad)){
+                        pokemonsFiltros.push(todosLosPokemons[i])
+                    }
                 }
             //    FILTRAR POR HABILIDADES
             }
