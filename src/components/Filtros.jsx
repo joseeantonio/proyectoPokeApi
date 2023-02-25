@@ -38,6 +38,30 @@ const Filtros = (props) => {
                 <option value="generation-viii">Generacion-viii</option>
                 <option value="generation-ix">Generacion-ix</option>
             </select>
+
+            <select name="habilidades" value={props.habilidad} onChange={ (e) => props.setHabilidad( e.target.value) }>
+                <option value="all">Habilidades</option>
+                <option value="stench">stench</option>
+                <option value="drizzle">drizzle</option>
+                <option value="speed-boost">speed-boost</option>
+                <option value="battle-armor">battle-armor</option>
+                <option value="sturdy">sturdy</option>
+                <option value="damp">damp</option>
+                <option value="limber">limber</option>
+                <option value="sand-veil">sand-veil</option>
+                <option value="static">static</option>
+                <option value="volt-absorb">volt-absorb</option>
+                <option value="water-absorb">water-absorb</option>
+                <option value="oblivious">oblivious</option>
+                <option value="cloud-nine">cloud-nine</option>
+                <option value="compound-eyes">compound-eyes</option>
+                <option value="insomnia">insomnia</option>
+                <option value="color-change">color-change</option>
+                <option value="immunity">immunity</option>
+                <option value="flash-fire">flash-fire</option>
+                <option value="shield-dust">shield-dust</option>
+                <option value="own-tempo">own-tempo</option>
+            </select>
         </div>
     )
 
