@@ -147,7 +147,7 @@ const Pokemons = () => {
         }
     }
 
-    const buscarPorTipo = async () => {
+    const buscarPorFiltros = async () => {
         setPokemonsFiltros((pokemonsFiltros=[]))
         setLoading(true)
         for (let i = 0; i < todosLosPokemons.length; i++) {
@@ -209,7 +209,7 @@ const Pokemons = () => {
     },[offset])
 
     useEffect(()=>{
-        buscarPorTipo()
+        buscarPorFiltros()
     },[generacion,tipo,habilidad])
 
 
@@ -234,7 +234,7 @@ const Pokemons = () => {
                     </div>
                     <div className='filtros'>
                         <Filtros
-                            buscarPorTipo={buscarPorTipo}
+                            buscarPorFiltros={buscarPorFiltros}
                             pokemonsBusqueda={pokemonsFiltros}
                             tipo={tipo}
                             setTipo={setTipo}
