@@ -106,30 +106,67 @@ const Pokemons = () => {
     const [habilidad,setHabilidad] = useState('all')
     let [pokemonsFiltros,setPokemonsFiltros] = useState([])
 
+
+    const anadirGeneracion = (todosLosPokemonsX,generacion,datos) => {
+        if (generacion==='generation-i'){
+            if (datos.id<152){
+                pokemonsFiltros.push(todosLosPokemonsX)
+            }
+        }else if(generacion==='generation-ii'){
+            if (datos.id>151 && datos.id<252){
+                pokemonsFiltros.push(todosLosPokemonsX)
+            }
+        }else if(generacion==='generation-iii'){
+            if (datos.id>251 && datos.id<387){
+                pokemonsFiltros.push(todosLosPokemonsX)
+            }
+        }else if(generacion==='generation-iv'){
+            if (datos.id>386 && datos.id<495){
+                pokemonsFiltros.push(todosLosPokemonsX)
+            }
+        }else if(generacion==='generation-v'){
+            if (datos.id>=494 && datos.id<=649){
+                pokemonsFiltros.push(todosLosPokemonsX)
+            }
+        }else if(generacion==='generation-vi'){
+            if (datos.id>=650 && datos.id<=721){
+                pokemonsFiltros.push(todosLosPokemonsX)
+            }
+        }else if(generacion==='generation-vii'){
+            if (datos.id>=722 && datos.id<=809){
+                pokemonsFiltros.push(todosLosPokemonsX)
+            }
+        }else if(generacion==='generation-viii'){
+            if (datos.id>=810 && datos.id<=905){
+                pokemonsFiltros.push(todosLosPokemonsX)
+            }
+        }else if(generacion==='generation-ix'){
+            if (datos.id>=906 && datos.id<=1008){
+                pokemonsFiltros.push(todosLosPokemonsX)
+            }
+        }
+    }
+
     const buscarPorTipo = async () => {
         setPokemonsFiltros((pokemonsFiltros=[]))
         setLoading(true)
         for (let i = 0; i < todosLosPokemons.length; i++) {
-            debugger
-            if (pokemonsFiltros.length < 21) {
                 let api = await fetch(`https://pokeapi.co/api/v2/pokemon/${todosLosPokemons[i].name}`)
                 let datos = await api.json()
                 let tiposPokemon = []
                 for (let x=0;x<datos.types.length;x++) {
                     tiposPokemon.push(datos.types[x].type.name)
                 }
-                let generaciones = []
-                for (let x=0;x<datos.past_types.length;x++){
-                    generaciones.push(datos.past_types[x].generation.name)
-                }
+                // let generaciones = []
+                // for (let x=0;x<datos.past_types.length;x++){
+                //     generaciones.push(datos.past_types[x].generation.name)
+                // }
                 let habilidades = []
                 for (let x=0;x<datos.abilities.length;x++){
                     habilidades.push(datos.abilities[x].ability.name)
                 }
                 if (tipo==='all' && generacion!=='all' && habilidad==='all'){
-                    if (generaciones.includes(generacion) ){
-                        pokemonsFiltros.push(todosLosPokemons[i])
-                    }
+                    anadirGeneracion(todosLosPokemons[i],generacion,datos)
                 }else if (generacion==='all' && tipo!=='all' && habilidad==='all'){
                     debugger
                     if (tiposPokemon.includes(tipo)){
@@ -137,20 +174,20 @@ const Pokemons = () => {
                     }
                     debugger
                 }else if (tipo!=='all' && generacion!=='all' && habilidad==='all'){
-                    if (tiposPokemon.includes(tipo) && generaciones.includes(generacion)){
-                        pokemonsFiltros.push(todosLosPokemons[i])
+                    if (tiposPokemon.includes(tipo)){
+                        anadirGeneracion(todosLosPokemons[i],generacion,datos)
                     }
                 }else if (tipo==='all' && generacion==='all' && habilidad!=='all'){
                     if (habilidades.includes(habilidad) ){
                         pokemonsFiltros.push(todosLosPokemons[i])
                     }
                 }else if (tipo==='all' && generacion!=='all' && habilidad!=='all'){
-                    if (habilidades.includes(habilidad) && generaciones.includes(generacion) ){
-                        pokemonsFiltros.push(todosLosPokemons[i])
+                    if (habilidades.includes(habilidad) ){
+                        anadirGeneracion(todosLosPokemons[i],generacion,datos)
                     }
                 }else if (tipo!=='all' && generacion!=='all' && habilidad!=='all'){
-                    if (tiposPokemon.includes(tipo) && generaciones.includes(generacion) && habilidades.includes(habilidad)){
-                        pokemonsFiltros.push(todosLosPokemons[i])
+                    if (tiposPokemon.includes(tipo) && habilidades.includes(habilidad)){
+                        anadirGeneracion(todosLosPokemons[i],generacion,datos)
                     }
                 }else if(tipo!=='all' && generacion==='all' && habilidad!=='all'){
                     if (tiposPokemon.includes(tipo) && habilidades.includes(habilidad)){
@@ -158,7 +195,6 @@ const Pokemons = () => {
                     }
                 }
             //    FILTRAR POR HABILIDADES
-            }
         }
         setBuscandoPorFiltros(true)
         setLoading(false)
