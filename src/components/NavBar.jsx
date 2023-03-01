@@ -15,7 +15,7 @@ const NavBar = () => {
                                     <li><NavLink to="/pokemons">PERSONAJES</NavLink></li>
                                     <li><NavLink to="#">CONTACTO</NavLink></li>
                                     <li><NavLink to="#">INICIAR SESION</NavLink></li>
-                                    <li className="boton"><NavLink to="#">REGISTRARSE</NavLink></li>
+                                    <li className="boton"><NavLink to="/register">REGISTRARSE</NavLink></li>
                                 </div>
 
                             {/*{user ? (*/}
