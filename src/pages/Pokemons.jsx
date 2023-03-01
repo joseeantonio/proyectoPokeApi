@@ -202,6 +202,12 @@ const Pokemons = () => {
         setLoading(false)
     }
 
+    const enter = (e) => {
+        if (e.key === 'Enter') {
+            buscar()
+        }
+    };
+
     useEffect(()=>{
         ObetenerDatosApiTodosPokemons()
     },[])
@@ -227,12 +233,12 @@ const Pokemons = () => {
                     </div>
                     <div className='input-busqueda'>
                         <input
+                            onKeyPress={enter}
                             type="search"
                             value={busqueda}
                             onChange={handleChange}
                             placeholder="Buscar por nombre o por id"
                         />
-                        <button onClick={buscar}>buscar</button>
                     </div>
                     <div className='filtros'>
                         <Filtros

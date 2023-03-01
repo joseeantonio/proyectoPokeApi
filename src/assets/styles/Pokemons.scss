@@ -37,6 +37,10 @@
     color: black;
   }
 
+  input[type=search] {
+    height: 30px;
+    width: 200px;
+  }
 
   .encabezado {
     width: 100%;
@@ -58,10 +62,6 @@
     display: flex;
     justify-content: center;
     color: $blanco;
-  }
-  .input-busqueda>input{
-    width: 220px;
-    height: 40px;
   }
   .CardPokemon{
     margin-left: 50px;
