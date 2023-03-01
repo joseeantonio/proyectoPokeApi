@@ -103,46 +103,57 @@ const Pokemons = () => {
     const [buscandoPorFiltros,setBuscandoPorFiltros] = useState(false)
     const [tipo,setTipo] = useState('all')
     const [generacion,setGeneracion] = useState('all')
-    const [habilidad,setHabilidad] = useState('all')
+    const [habitat,setHabitat] = useState('all')
     let [pokemonsFiltros,setPokemonsFiltros] = useState([])
 
 
-    const anadirGeneracion = (todosLosPokemonsX,generacion,datos) => {
+
+    const anadirHabitat = async (pokemon) => {
+        let apiHabitat = await fetch(`https://pokeapi.co/api/v2/pokemon-habitat/${habitat}`)
+        let datosHabitat = await apiHabitat.json()
+        for (let x = 0; x < datosHabitat.pokemon_species.length; x++) {
+            if (datosHabitat.pokemon_species[x].name === pokemon.name) {
+                return true
+            }
+        }
+    }
+
+    const anadirGeneracion = (todosLosPokemonsX,datos) => {
         if (generacion==='generation-i'){
             if (datos.id<152){
-                pokemonsFiltros.push(todosLosPokemonsX)
+                return true
             }
         }else if(generacion==='generation-ii'){
             if (datos.id>151 && datos.id<252){
-                pokemonsFiltros.push(todosLosPokemonsX)
+                return true
             }
         }else if(generacion==='generation-iii'){
             if (datos.id>251 && datos.id<387){
-                pokemonsFiltros.push(todosLosPokemonsX)
+                return true
             }
         }else if(generacion==='generation-iv'){
             if (datos.id>386 && datos.id<495){
-                pokemonsFiltros.push(todosLosPokemonsX)
+                return true
             }
         }else if(generacion==='generation-v'){
             if (datos.id>=494 && datos.id<=649){
-                pokemonsFiltros.push(todosLosPokemonsX)
+                return true
             }
         }else if(generacion==='generation-vi'){
             if (datos.id>=650 && datos.id<=721){
-                pokemonsFiltros.push(todosLosPokemonsX)
+                return true
             }
         }else if(generacion==='generation-vii'){
             if (datos.id>=722 && datos.id<=809){
-                pokemonsFiltros.push(todosLosPokemonsX)
+                return true
             }
         }else if(generacion==='generation-viii'){
             if (datos.id>=810 && datos.id<=905){
-                pokemonsFiltros.push(todosLosPokemonsX)
+                return true
             }
         }else if(generacion==='generation-ix'){
             if (datos.id>=906 && datos.id<=1008){
-                pokemonsFiltros.push(todosLosPokemonsX)
+                return true
             }
         }
     }
@@ -157,44 +168,35 @@ const Pokemons = () => {
                 for (let x=0;x<datos.types.length;x++) {
                     tiposPokemon.push(datos.types[x].type.name)
                 }
-                // let generaciones = []
-                // for (let x=0;x<datos.past_types.length;x++){
-                //     generaciones.push(datos.past_types[x].generation.name)
-                // }
-                let habilidades = []
-                for (let x=0;x<datos.abilities.length;x++){
-                    habilidades.push(datos.abilities[x].ability.name)
-                }
-                if (tipo==='all' && generacion!=='all' && habilidad==='all'){
-                    anadirGeneracion(todosLosPokemons[i],generacion,datos)
-                }else if (generacion==='all' && tipo!=='all' && habilidad==='all'){
-                    debugger
+                if (tipo==='all' && generacion!=='all' && habitat==='all'){
+                     if(anadirGeneracion(todosLosPokemons[i],datos)){
+                         pokemonsFiltros.push(todosLosPokemons[i])
+                     }
+                }else if (generacion==='all' && tipo!=='all' && habitat==='all'){
                     if (tiposPokemon.includes(tipo)){
                         pokemonsFiltros.push(todosLosPokemons[i])
                     }
-                    debugger
-                }else if (tipo!=='all' && generacion!=='all' && habilidad==='all'){
-                    if (tiposPokemon.includes(tipo)){
-                        anadirGeneracion(todosLosPokemons[i],generacion,datos)
-                    }
-                }else if (tipo==='all' && generacion==='all' && habilidad!=='all'){
-                    if (habilidades.includes(habilidad) ){
+                }else if (tipo!=='all' && generacion!=='all' && habitat==='all'){
+                    if (tiposPokemon.includes(tipo) && anadirGeneracion(todosLosPokemons[i],datos)){
                         pokemonsFiltros.push(todosLosPokemons[i])
                     }
-                }else if (tipo==='all' && generacion!=='all' && habilidad!=='all'){
-                    if (habilidades.includes(habilidad) ){
-                        anadirGeneracion(todosLosPokemons[i],generacion,datos)
+                }else if (tipo!=='all' && generacion!=='all' && habitat!=='all'){
+                    if (tiposPokemon.includes(tipo) && anadirGeneracion(todosLosPokemons[i],datos) && await anadirHabitat(todosLosPokemons[i])){
+                        pokemonsFiltros.push(todosLosPokemons[i])
                     }
-                }else if (tipo!=='all' && generacion!=='all' && habilidad!=='all'){
-                    if (tiposPokemon.includes(tipo) && habilidades.includes(habilidad)){
-                        anadirGeneracion(todosLosPokemons[i],generacion,datos)
+                }else if(tipo!=='all' && generacion==='all' && habitat!=='all'){
+                    if (tiposPokemon.includes(tipo) && await anadirHabitat(todosLosPokemons[i])){
+                        pokemonsFiltros.push(todosLosPokemons[i])
                     }
-                }else if(tipo!=='all' && generacion==='all' && habilidad!=='all'){
-                    if (tiposPokemon.includes(tipo) && habilidades.includes(habilidad)){
+                }else if(tipo==='all' && generacion==='all' && habitat!=='all'){
+                    if (await anadirHabitat(todosLosPokemons[i])){
+                        pokemonsFiltros.push(todosLosPokemons[i])
+                    }
+                }else if (tipo==='all' && generacion!=='all' && habitat!=='all'){
+                    if (await anadirHabitat(todosLosPokemons[i]) && anadirGeneracion(todosLosPokemons,datos)){
                         pokemonsFiltros.push(todosLosPokemons[i])
                     }
                 }
-            //    FILTRAR POR HABILIDADES
         }
         setBuscandoPorFiltros(true)
         setLoading(false)
@@ -210,7 +212,7 @@ const Pokemons = () => {
 
     useEffect(()=>{
         buscarPorFiltros()
-    },[generacion,tipo,habilidad])
+    },[generacion,tipo,habitat])
 
 
     return (
@@ -240,8 +242,8 @@ const Pokemons = () => {
                             setTipo={setTipo}
                             generacion={generacion}
                             setGeneracion={setGeneracion}
-                            setHabilidad={setHabilidad}
-                            habilidad={habilidad}
+                            setHabitat={setHabitat}
+                            habitat={habitat}
                         />
                     </div>
 
