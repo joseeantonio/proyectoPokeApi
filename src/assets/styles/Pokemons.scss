@@ -15,6 +15,13 @@
   h1{
     text-align: center;
   }
+
+  .h1-busqueda{
+    font-size: 40px;
+    margin-top: 60px;
+    margin-bottom: -20px;
+  }
+
   .filtros{
     display: flex;
     justify-content: space-around;
@@ -55,6 +62,9 @@
   .input-busqueda>input{
     width: 220px;
     height: 40px;
+  }
+  .CardPokemon{
+    margin-left: 50px;
   }
 
   background-color: rgba(24, 95, 202, 0.42);

@@ -249,7 +249,7 @@ const Pokemons = () => {
 
                     {buscandoPorFiltros && tipo && pokemonsFiltros.length>0 ?
                         <div>
-                            <h1>Primeros resultados ({pokemonsFiltros.length})</h1>
+                            <h1 className='h1-busqueda'>Resultados de la busqueda ({pokemonsFiltros.length})</h1>
                             <Cards pokemons={pokemonsFiltros}/>
                         </div>
                         : !buscando ?
