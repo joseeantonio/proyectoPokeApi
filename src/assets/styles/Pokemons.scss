@@ -15,6 +15,21 @@
   h1{
     text-align: center;
   }
+  .filtros{
+    display: flex;
+    justify-content: space-around;
+  }
+  .filtros > select{
+    margin: 15px;
+    padding: 5px 10px;
+    height:42px;
+    border-radius: 16px;
+    border: none;
+    letter-spacing: -0.02em;
+    background: white;
+    color: black;
+  }
+
 
   .encabezado {
     width: 100%;
@@ -37,8 +52,11 @@
     justify-content: center;
     color: $blanco;
   }
+  .input-busqueda>input{
+    width: 220px;
+    height: 40px;
+  }
 
   background-color: rgba(24, 95, 202, 0.42);
-  //padding: 50px 50px 50px 190px;
 
 }

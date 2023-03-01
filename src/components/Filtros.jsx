@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 const Filtros = (props) => {
 
     return(
-        <div className='tipos'>
+        <div className='filtros'>
             <select name='tipos' value={props.tipo} onChange={ (e) => props.setTipo( e.target.value) }>
                 <option value="all">Tipos</option>
                 <option value="grass">Planta</option>
