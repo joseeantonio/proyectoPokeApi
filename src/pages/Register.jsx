@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {NavLink, useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
+import {useUserContext} from "../context/UserContext.jsx";
 
 const Register = () => {
 
@@ -13,6 +14,7 @@ const Register = () => {
     const [usuarios,setUsuarios] = useState([])
     const [terminos,setTerminos] = useState(false)
     const [error, setError] = useState(null)
+    const { usario, setUsuario } = useUserContext()
     const navigate = useNavigate()
 
     const handleChange = (e) => {
@@ -33,8 +35,8 @@ const Register = () => {
         localStorage.setItem("password",datos.password)
 
         setError(null)
+        setUsuario(true)
         navigate('/pokemons')
-        console.log(usuarios)
     }
 
     const validar = (e) => {

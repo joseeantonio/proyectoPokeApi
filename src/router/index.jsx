@@ -5,6 +5,7 @@ import Error from "../pages/Error.jsx";
 import Pokemons from "../pages/Pokemons.jsx";
 import DetallesPokemon from "../pages/DetallesPokemon.jsx";
 import Register from "../pages/Register.jsx";
+import LayoutPrivate from "../layouts/LayoutPrivate.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -17,15 +18,20 @@ export const router = createBrowserRouter([
                 index: true,
                 element: <Home />,
             },{
-                path: '/pokemons',
-                element : <Pokemons />
-            },{
-                path: '/pokemons/:id',
-                element: <DetallesPokemon />,
-            },{
                 path: '/register',
                 element: <Register />,
-            },
+            },{
+                element: <LayoutPrivate />,
+                children: [
+                    {
+                        path: '/pokemons',
+                        element : <Pokemons />
+                    },{
+                        path: '/pokemons/:id',
+                        element: <DetallesPokemon />,
+                    },
+                ]
+            }
         ],
     },
 ])

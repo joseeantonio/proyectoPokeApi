@@ -20,7 +20,7 @@
   }
 
   .menu_ordenador > ul div { /*Ponemos todos los li en la misma linea y creamos separacion entre cada uno de ellos*/
-    padding: 15px;
+    padding: 10px;
     display: inline-block;
   }
 
@@ -29,7 +29,7 @@
   }
 
   .menu_ordenador > ul div li { /*Ponemos todos los li en la misma linea y creamos separacion entre cada uno de ellos*/
-    padding: 15px;
+    padding: 10px;
     display: inline-block;
   }
 
@@ -65,6 +65,10 @@
     color: $blanco;
     font-size: 15px;
     margin: 10px;
+  }
+
+  button{
+    padding: 10px;
   }
 
 }

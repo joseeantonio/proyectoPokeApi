@@ -1,8 +1,13 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import Logo from '../images/logo_pokemon.png'
+import {useUserContext} from "../context/UserContext.jsx";
 
 const NavBar = () => {
+
+    //Cogemos valor del usuario del context
+    const { usuario, setUsuario } = useUserContext()
+
     return(
         <div className='NavBar'>
             <header>
@@ -10,25 +15,23 @@ const NavBar = () => {
                     <NavLink to="/"><img src={Logo}/></NavLink>
                     <nav className="menu_ordenador">
                         <ul>
-                            {/*{user && (*/}
+                            {usuario ? (
+                                <div>
+                                    <li><NavLink to="/pokemons">PERSONAJES</NavLink></li>
+                                    <li><NavLink to="#">CONTACTO</NavLink></li>
+                                    <button className='btn btn-dark'
+                                    >
+                                        Cerrar sesión
+                                    </button>
+                                </div>
+                            ):(
                                 <div>
                                     <li><NavLink to="/pokemons">PERSONAJES</NavLink></li>
                                     <li><NavLink to="#">CONTACTO</NavLink></li>
                                     <li><NavLink to="#">INICIAR SESION</NavLink></li>
                                     <li className="boton"><NavLink to="/register">REGISTRARSE</NavLink></li>
                                 </div>
-
-                            {/*{user ? (*/}
-                            {/*    <button className='btn btn-dark'*/}
-                            {/*            onClick={cerrarSesion}>*/}
-                            {/*        Cerrar sesión*/}
-                            {/*    </button>*/}
-                            {/*):(*/}
-                            {/*    <div>*/}
-                            {/*        <li><NavLink to="/login">INICIAR SESION</NavLink></li>*/}
-                            {/*        <li className="boton"><NavLink to="/register">REGISTRARSE</NavLink></li>*/}
-                            {/*    </div>*/}
-                            {/*)}*/}
+                            )}
 
                         </ul>
                     </nav>
