@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Register = () => {
 
@@ -8,14 +10,31 @@ const Register = () => {
         password: '',
         password_rep: '',
     })
+    const [usuarios,setUsuarios] = useState([])
     const [terminos,setTerminos] = useState(false)
     const [error, setError] = useState(null)
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         setDatos({
             ...datos,
             [e.target.name]: e.target.value,
         })
+    }
+
+    const registrarse = async () => {
+        await Swal.fire({
+            title: 'Usuario registrado',
+        })
+
+        setUsuarios([...usuarios, datos])
+        localStorage.setItem("name",datos.name)
+        localStorage.setItem("email",datos.email)
+        localStorage.setItem("password",datos.password)
+
+        setError(null)
+        navigate('/pokemons')
+        console.log(usuarios)
     }
 
     const validar = (e) => {
@@ -51,7 +70,7 @@ const Register = () => {
             return
         }
         else {
-            setError(null)
+            registrarse()
         }
     }
 
