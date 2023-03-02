@@ -6,6 +6,7 @@ import Pokemons from "../pages/Pokemons.jsx";
 import DetallesPokemon from "../pages/DetallesPokemon.jsx";
 import Register from "../pages/Register.jsx";
 import LayoutPrivate from "../layouts/LayoutPrivate.jsx";
+import Login from "../pages/Login.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
                 path: '/register',
                 element: <Register />,
             },{
+                path: '/login',
+                element: <Login />
+            },
+            {
                 element: <LayoutPrivate />,
                 children: [
                     {

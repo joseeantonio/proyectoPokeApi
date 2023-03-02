@@ -76,6 +76,9 @@ const Register = () => {
         }
     }
 
+    const [estadoFormulario,setEstadoFormulario] = useState('registro')
+
+
     return(
         <div className='Register'>
             <div className="caja-de-fuera">
@@ -125,9 +128,15 @@ const Register = () => {
                                 type="checkbox"
                             />
                             Acepto el acuerdo de terminos</div>
-                        <NavLink to='/pokemons'>¿Ya tienes cuenta?</NavLink>
+                        <NavLink onClick={()=>{
+                            if (estadoFormulario==='registro'){
+                                setEstadoFormulario('iniciar sesion')
+                            }else{
+                                setEstadoFormulario('registro')
+                            }
+                        }}>¿Ya tienes cuenta?</NavLink>
                         <button className='btn btn-lg btn-dark w-100  mb-2' type='submit'>
-                            Registrar
+                            Registrarse
                         </button>
                     </form>
                     {error && <div className='error'>{error}</div>}
