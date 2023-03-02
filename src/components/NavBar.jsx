@@ -8,6 +8,10 @@ const NavBar = () => {
     //Cogemos valor del usuario del context
     const { usuario, setUsuario } = useUserContext()
 
+    const cerrarSesion = () => {
+        setUsuario(null)
+    }
+
     return(
         <div className='NavBar'>
             <header>
@@ -19,7 +23,8 @@ const NavBar = () => {
                                 <div>
                                     <li><NavLink to="/pokemons">PERSONAJES</NavLink></li>
                                     <li><NavLink to="#">CONTACTO</NavLink></li>
-                                    <button className='btn btn-dark'
+                                    <button className='btn btn-dark'ç
+                                            onClick={cerrarSesion}
                                     >
                                         Cerrar sesión
                                     </button>
