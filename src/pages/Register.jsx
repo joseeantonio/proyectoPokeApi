@@ -8,6 +8,7 @@ const Register = () => {
         password: '',
         password_rep: '',
     })
+    const [terminos,setTerminos] = useState(false)
     const [error, setError] = useState(null)
 
     const handleChange = (e) => {
@@ -43,6 +44,10 @@ const Register = () => {
         }
         if (password_rep!==password){
             setError('La contraseñas no coinciden')
+            return
+        }
+        if (terminos===false){
+            setError('Acepte los terminos')
             return
         }
         else {
@@ -94,7 +99,12 @@ const Register = () => {
                         />
 
 
-                        <div><input className="ckeckbox" type="checkbox"/>Acepto el acuerdo de terminos</div>
+                        <div>
+                            <input
+                                onChange={(e) => setTerminos(e.target.checked)}
+                                className="ckeckbox"
+                                type="checkbox"
+                            />Acepto el acuerdo de terminos</div>
                         <button className='btn btn-lg btn-dark w-100  mb-2' type='submit'>
                             Registrar
                         </button>
