@@ -26,7 +26,10 @@ const Login = () => {
         setUsuarios([...usuarios, datos])
 
         console.log(datos)
-        if (localStorage.getItem('email')===datos.email){
+        if (localStorage.getItem('password')!==datos.password && localStorage.getItem('email')===datos.email){
+            setError('Contraseña incorrecta')
+        }
+        else if (localStorage.getItem('email')===datos.email){
             setError(null)
             setUsuario(true)
             navigate('/pokemons')

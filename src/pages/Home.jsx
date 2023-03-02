@@ -7,7 +7,7 @@ const Home = () => {
             <main>
                 <h1>BIENVENIDO</h1>
                 <p>¿Seguro de empezar esta nueva aventura?</p>
-                <NavLink className="boton_principal" id="ancla" to="#">EMPEZAR</NavLink>
+                <NavLink to='/pokemons' className="boton_principal">EMPEZAR</NavLink>
             </main>
         </div>
     )
