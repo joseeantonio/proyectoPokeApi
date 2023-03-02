@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import Paginacion from "../components/Paginacion.jsx";
 import Cards from "../components/Cards.jsx";
 import Filtros from "../components/Filtros.jsx";
+import {FadeLoader} from "react-spinners";
 
 const Pokemons = () => {
     const [data, setData] = useState([])
@@ -225,7 +226,14 @@ const Pokemons = () => {
         <div className='Pokemons'>
             {loading
                 ?
-                <h1>Cargando...</h1>
+                <div className='cargando'>
+                    <FadeLoader
+                        color="#000000"
+                        margin={16}
+                        height={42}
+                        width={8}
+                    />
+                </div>
                 :
                 <div>
                     <div className='encabezado' style={{ backgroundImage: "url(/img_fondo_encabezado.png)" }}>

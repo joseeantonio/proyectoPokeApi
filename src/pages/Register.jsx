@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Register = () => {
@@ -74,8 +74,6 @@ const Register = () => {
         }
     }
 
-
-
     return(
         <div className='Register'>
             <div className="caja-de-fuera">
@@ -125,6 +123,7 @@ const Register = () => {
                                 type="checkbox"
                             />
                             Acepto el acuerdo de terminos</div>
+                        <NavLink to='/pokemons'>¿Ya tienes cuenta?</NavLink>
                         <button className='btn btn-lg btn-dark w-100  mb-2' type='submit'>
                             Registrar
                         </button>
