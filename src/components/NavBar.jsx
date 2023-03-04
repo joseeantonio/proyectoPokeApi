@@ -23,7 +23,7 @@ const NavBar = () => {
                                 <div>
                                     <li><NavLink to="/pokemons">PERSONAJES</NavLink></li>
                                     <li><NavLink to="#">CONTACTO</NavLink></li>
-                                    <button className='btn btn-dark'ç
+                                    <button className='btn btn-dark'
                                             onClick={cerrarSesion}
                                     >
                                         Cerrar sesión
@@ -32,7 +32,7 @@ const NavBar = () => {
                             ):(
                                 <div>
                                     <li><NavLink to="/pokemons">PERSONAJES</NavLink></li>
-                                    <li><NavLink to="#">CONTACTO</NavLink></li>
+                                    <li><NavLink to="/contacto">CONTACTO</NavLink></li>
                                     <li><NavLink to="/login">INICIAR SESION</NavLink></li>
                                     <li className="boton"><NavLink to="/register">REGISTRARSE</NavLink></li>
                                 </div>

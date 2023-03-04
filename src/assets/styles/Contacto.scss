@@ -1,0 +1,36 @@
+.Contacto{
+
+  background-color: rgba(24, 95, 202, 0.42);
+  min-height: 700px;
+
+  .formulario{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto 30px;
+    width: 400px;
+  }
+  .caja{
+    background: white;
+    margin: 0 auto;
+    text-align: center;
+    width: 500px;
+    border-radius: 15px;
+  }
+  .caja-de-fuera{
+    padding-top: 120px;
+  }
+
+  .formulario>input,.formulario>textarea{
+    margin-bottom: 15px;
+  }
+  button{
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+
+
+}

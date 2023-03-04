@@ -7,6 +7,7 @@ import DetallesPokemon from "../pages/DetallesPokemon.jsx";
 import Register from "../pages/Register.jsx";
 import LayoutPrivate from "../layouts/LayoutPrivate.jsx";
 import Login from "../pages/Login.jsx";
+import Contacto from "../pages/Contacto.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
             },{
                 path: '/login',
                 element: <Login />
+            },
+            {
+                path: '/contacto',
+                element: <Contacto />
             },
             {
                 element: <LayoutPrivate />,
