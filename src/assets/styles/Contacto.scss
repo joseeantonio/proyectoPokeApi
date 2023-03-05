@@ -1,7 +1,35 @@
 .Contacto{
-
   background-color: rgba(24, 95, 202, 0.42);
   min-height: 700px;
+  input{
+    width: 340px;
+    text-align: center;
+  }
+
+  textarea{
+    width: 340px;
+  }
+
+  label{
+    width: 300px;
+  }
+  h1{
+    text-align: center;
+    margin: 30px;
+  }
+  .caja-de-fuera{
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+  .caja{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 500px;
+    margin: auto;
+    background-color: white;
+    border-radius: 15px;
+  }
 
   .formulario{
     display: flex;
@@ -10,27 +38,17 @@
     margin: 0 auto 30px;
     width: 400px;
   }
-  .caja{
-    background: white;
-    margin: 0 auto;
-    text-align: center;
-    width: 500px;
-    border-radius: 15px;
-  }
-  .caja-de-fuera{
-    padding-top: 120px;
+  .formulario>*{
+    margin: 0 auto 10px;
   }
 
-  .formulario>input,.formulario>textarea{
-    margin-bottom: 15px;
-  }
-  button{
-    margin: 15px;
-    display: flex;
-    justify-content: center;
-    text-align: center;
+  .btn{
+    margin-top: 15px;
   }
 
-
+  .error{
+    margin: auto auto 30px;
+    color: red;
+  }
 
 }

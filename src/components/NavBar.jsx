@@ -22,7 +22,7 @@ const NavBar = () => {
                             {usuario ? (
                                 <div>
                                     <li><NavLink to="/pokemons">PERSONAJES</NavLink></li>
-                                    <li><NavLink to="#">CONTACTO</NavLink></li>
+                                    <li><NavLink to="/contacto">CONTACTO</NavLink></li>
                                     <button className='btn btn-dark'
                                             onClick={cerrarSesion}
                                     >

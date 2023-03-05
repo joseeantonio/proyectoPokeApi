@@ -42,17 +42,21 @@ const Register = () => {
     const validar = (e) => {
         e.preventDefault()
         const { name,email,password,password_rep } = datos
+        const regExpEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
+        if (!name.trim()){
+            setError('Complete el nombre de usuario')
+            return
+        }
         if (!email.trim()) {
-            setError('Comlete el correo electronico')
+            setError('Complete el correo electronico')
+            return
+        }if (!regExpEmail.test(email)) {
+            setError('Correo electronico incorrecto')
             return
         }
         if (!password.trim()) {
             setError('Complete la contraseña')
-            return
-        }
-        if (!name.trim()){
-            setError('Complete el nombre de usuario')
             return
         }
         if (password.length < 6) {
@@ -75,9 +79,6 @@ const Register = () => {
             registrarse()
         }
     }
-
-    const [estadoFormulario,setEstadoFormulario] = useState('registro')
-
 
     return(
         <div className='Register'>
