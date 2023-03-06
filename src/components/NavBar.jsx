@@ -32,7 +32,6 @@ const NavBar = () => {
                             ):(
                                 <div>
                                     <li><NavLink to="/pokemons">PERSONAJES</NavLink></li>
-                                    <li><NavLink to="/contacto">CONTACTO</NavLink></li>
                                     <li><NavLink to="/login">INICIAR SESION</NavLink></li>
                                     <li className="boton"><NavLink to="/register">REGISTRARSE</NavLink></li>
                                 </div>

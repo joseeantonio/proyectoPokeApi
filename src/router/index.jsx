@@ -25,20 +25,20 @@ export const router = createBrowserRouter([
             },{
                 path: '/login',
                 element: <Login />
+            },{
+                path: '/pokemons',
+                element : <Pokemons />
             },
-            {
-                path: '/contacto',
-                element: <Contacto />
-            },
+
             {
                 element: <LayoutPrivate />,
                 children: [
                     {
-                        path: '/pokemons',
-                        element : <Pokemons />
-                    },{
                         path: '/pokemons/:id',
                         element: <DetallesPokemon />,
+                    },{
+                        path: '/contacto',
+                        element: <Contacto />
                     },
                 ]
             }
