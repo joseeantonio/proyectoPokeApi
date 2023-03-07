@@ -75,6 +75,13 @@
     background-color: #fdb9e9;
   }
 
+  .tipos{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 70px;
+    margin-bottom: 30px;
+  }
+
   .tipos>*{
     padding: 20px;
     width: 200px;
