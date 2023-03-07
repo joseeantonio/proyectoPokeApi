@@ -1,0 +1,7 @@
+.DetallesPokemon {
+  background-color: rgba(24, 95, 202, 0.42);
+  min-height: 700px; }
+  .DetallesPokemon .imagenesPokemon {
+    display: flex; }
+
+/*# sourceMappingURL=DetallesPokemon.css.map */

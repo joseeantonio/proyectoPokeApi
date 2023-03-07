@@ -22,7 +22,7 @@ const Filtros = (props) => {
                 <option value="psychic">Psiquico</option>
                 <option value="ice">Hielo</option>
                 <option value="dragon">Dragon</option>
-                <option value="dark">Oscuro</option>
+                <option value="dark">Siniestro</option>
                 <option value="fairy">Hada</option>
             </select>
 

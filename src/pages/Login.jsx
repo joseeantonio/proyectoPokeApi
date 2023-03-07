@@ -12,7 +12,7 @@ const Login = () => {
     const [usuarios,setUsuarios] = useState([])
     const [terminos,setTerminos] = useState(false)
     const [error, setError] = useState(null)
-    const { usario, setUsuario } = useUserContext()
+    const { usuario, setUsuario } = useUserContext()
     const navigate = useNavigate()
 
     const handleChange = (e) => {
