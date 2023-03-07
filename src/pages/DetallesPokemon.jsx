@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 
 const DetallesPokemon = () => {
 
@@ -10,6 +10,7 @@ const DetallesPokemon = () => {
     const [loading, setLoading] = useState(true)
     const [descripcion,setDescripcion] = useState()
     const [tipos,setTipos] = useState([])
+    const [evoluciones,setEvoluciones] = useState([])
 
     const ObetenerDetalles = async (url) => {
         try {
@@ -18,6 +19,7 @@ const DetallesPokemon = () => {
             setData(datos)
             let descripcion = await fetch(`https://pokeapi.co/api/v2/characteristic/${id}`)
             let datosDescripcion = await descripcion.json()
+            //Una clase por cada tipo
             for (let x=0;x<datos.types.length;x++) {
                 if (datos.types[x].type.name==='grass'){
                     tipos.push(<h4 className={datos.types[x].type.name}>Planta</h4>)
@@ -74,6 +76,9 @@ const DetallesPokemon = () => {
                     tipos.push(<h4 className={datos.types[x].type.name}>Hada</h4>)
                 }
             }
+
+
+            //guardo descripcion
             for (let i=0;i<datosDescripcion.descriptions.length;i++){
                 if (datosDescripcion.descriptions[i].language.name==='es'){
                     setDescripcion(datosDescripcion.descriptions[i].description)
@@ -81,6 +86,7 @@ const DetallesPokemon = () => {
                 }
             }
             setDescripcion(datosDescripcion)
+
         }catch (e){
             setError('No se ha podido coger los datos de la api')
         }finally {
@@ -88,6 +94,7 @@ const DetallesPokemon = () => {
         }
         return
     }
+
 
     useEffect(()=>{
         ObetenerDetalles(url)
@@ -102,6 +109,7 @@ const DetallesPokemon = () => {
                 <h1>Cargando...</h1>
                     :
                     (<div>
+                        <NavLink to='/pokemons'><i className="fa fa-arrow-left" aria-hidden="true"/></NavLink>
                         <div className='descripcion-img'>
                             <div className='imagenPokemon'>
                                 <h1>{data.forms[0].name}</h1>

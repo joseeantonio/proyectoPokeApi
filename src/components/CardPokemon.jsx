@@ -7,7 +7,6 @@ const CardPokemon = (props) => {
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(true)
     const [url,setUrl] = useState(props.urlDetalles)
-    const [evolucion,setEvolucion] = useState([])
 
     async function getDatos(url) {
         try {
