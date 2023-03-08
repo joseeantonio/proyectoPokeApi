@@ -21,8 +21,6 @@ const DetallesPokemon = () => {
             let api = await fetch(url)
             let datos = await api.json()
             setData(datos)
-            let descripcion = await fetch(`https://pokeapi.co/api/v2/characteristic/${id}`)
-            let datosDescripcion = await descripcion.json()
             //Una clase por cada tipo
             let tipos = []
             for (let x=0;x<datos.types.length;x++) {
@@ -83,6 +81,18 @@ const DetallesPokemon = () => {
             }
             setTipos(tipos)
 
+        }catch (e){
+            setError('No se ha podido coger los datos de la api')
+        }finally {
+            setLoading(false)
+        }
+        return
+    }
+    const cogerDescripcion = async () => {
+        try {
+            let descripcion = await fetch(`https://pokeapi.co/api/v2/characteristic/${id}`)
+            let datosDescripcion = await descripcion.json()
+
             //guardo descripcion
             for (let i=0;i<datosDescripcion.descriptions.length;i++){
                 if (datosDescripcion.descriptions[i].language.name==='es'){
@@ -91,8 +101,6 @@ const DetallesPokemon = () => {
                 }
             }
             setDescripcion(datosDescripcion)
-
-
         }catch (e){
             setError('No se ha podido coger los datos de la api')
         }finally {
@@ -104,6 +112,7 @@ const DetallesPokemon = () => {
 
     useEffect(()=>{
         ObetenerDetalles(url)
+        cogerDescripcion()
     },[])
 
     useEffect(()=>{
