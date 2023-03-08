@@ -13,6 +13,7 @@ const DetallesPokemon = () => {
     const [descripcion,setDescripcion] = useState()
     const [tipos,setTipos] = useState([])
     const [evoluciones,setEvoluciones] = useState([])
+    const [favorito,setFavorito] = useState(false)
 
     const ObetenerDetalles = async (url) => {
         try {
@@ -88,6 +89,7 @@ const DetallesPokemon = () => {
             }
             setDescripcion(datosDescripcion)
 
+
         }catch (e){
             setError('No se ha podido coger los datos de la api')
         }finally {
@@ -100,6 +102,19 @@ const DetallesPokemon = () => {
     useEffect(()=>{
         ObetenerDetalles(url)
     },[])
+
+    useEffect(()=>{
+        let listafavoritos = []
+        if (JSON.parse(localStorage.getItem('favoritos'))){
+            listafavoritos = JSON.parse(localStorage.getItem('favoritos'))
+        }
+        for (let i=0;i<listafavoritos.length;i++){
+            if (listafavoritos[i].id === data.id){
+                setFavorito(true)
+            }
+        }
+
+    },[data])
 
 
     const anadirFavorito = () => {
@@ -123,9 +138,11 @@ const DetallesPokemon = () => {
                 }
             }
             localStorage.setItem('favoritos', JSON.stringify(favoritosFinal))
+            setFavorito(false)
         }else{
             favoritos.push(data)
             localStorage.setItem('favoritos', JSON.stringify(favoritos))
+            setFavorito(true)
         }
 
     }
@@ -155,7 +172,9 @@ const DetallesPokemon = () => {
                         </div>
 
                         {usuario &&
-                            (<button onClick={anadirFavorito}>Añadir a favorito</button>)
+                            (<button onClick={anadirFavorito}>{
+                                favorito ? 'Eliminar de favoritos' : 'Añadir a favoritos'
+                            }</button>)
                         }
 
                     </div>)
