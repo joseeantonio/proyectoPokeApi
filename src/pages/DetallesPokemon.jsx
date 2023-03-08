@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {NavLink, useParams} from "react-router-dom";
 import {useUserContext} from "../context/UserContext.jsx";
+import Swal from "sweetalert2";
 
 const DetallesPokemon = () => {
 
@@ -107,6 +108,20 @@ const DetallesPokemon = () => {
         }
         return
     }
+
+    useEffect(() => {
+        const alertaDeTiempo = setTimeout(() => {
+            if (!usuario){
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Atencion',
+                    text: 'Si te registras te aparecera un boton para añadir el pokemon a favorito',
+                    confirmButtonText: '¡Entendido!'
+                })
+            }
+        }, 1000)
+    }, [])
+
 
 
     useEffect(()=>{
