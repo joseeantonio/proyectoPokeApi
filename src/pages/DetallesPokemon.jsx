@@ -23,6 +23,7 @@ const DetallesPokemon = () => {
             let descripcion = await fetch(`https://pokeapi.co/api/v2/characteristic/${id}`)
             let datosDescripcion = await descripcion.json()
             //Una clase por cada tipo
+            let tipos = []
             for (let x=0;x<datos.types.length;x++) {
                 if (datos.types[x].type.name==='grass'){
                     tipos.push(<h4 className={datos.types[x].type.name}>Planta</h4>)
@@ -79,6 +80,7 @@ const DetallesPokemon = () => {
                     tipos.push(<h4 className={datos.types[x].type.name}>Hada</h4>)
                 }
             }
+            setTipos(tipos)
 
             //guardo descripcion
             for (let i=0;i<datosDescripcion.descriptions.length;i++){
