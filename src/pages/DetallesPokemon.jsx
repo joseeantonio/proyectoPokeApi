@@ -109,7 +109,8 @@ const DetallesPokemon = () => {
         return
     }
 
-    useEffect(() => {
+
+    const funcionSetTimeOut = () => {
         const alertaDeTiempo = setTimeout(() => {
             if (!usuario){
                 Swal.fire({
@@ -121,13 +122,14 @@ const DetallesPokemon = () => {
             }
         }, 1000)
         return () => clearTimeout(alertaDeTiempo)
-    }, [])
+    }
 
 
 
     useEffect(()=>{
         ObetenerDetalles(url)
         cogerDescripcion()
+        funcionSetTimeOut()
     },[])
 
     useEffect(()=>{
