@@ -17,6 +17,7 @@ const DetallesPokemon = () => {
 
     const ObetenerDetalles = async (url) => {
         try {
+            debugger
             let api = await fetch(url)
             let datos = await api.json()
             setData(datos)
@@ -100,6 +101,7 @@ const DetallesPokemon = () => {
 
 
     useEffect(()=>{
+        debugger
         ObetenerDetalles(url)
     },[])
 
@@ -113,28 +115,26 @@ const DetallesPokemon = () => {
                 setFavorito(true)
             }
         }
-
     },[data])
 
 
     const anadirFavorito = () => {
+        debugger
         let favoritos = []
         if (JSON.parse(localStorage.getItem('favoritos'))){
             favoritos = JSON.parse(localStorage.getItem('favoritos'))
         }
-
         let estaEnFavoritos = null
         for (let i=0;i<favoritos.length;i++){
             if (favoritos[i].id === data.id){
                 estaEnFavoritos = true
             }
         }
-
         let favoritosFinal = []
         if (estaEnFavoritos){
             for (let i=0;i<favoritos.length;i++){
                 if (favoritos[i].id !== data.id){
-                    favoritosFinal.push(favoritos[i].id)
+                    favoritosFinal.push(favoritos[i])
                 }
             }
             localStorage.setItem('favoritos', JSON.stringify(favoritosFinal))
@@ -144,7 +144,6 @@ const DetallesPokemon = () => {
             localStorage.setItem('favoritos', JSON.stringify(favoritos))
             setFavorito(true)
         }
-
     }
 
     return(
