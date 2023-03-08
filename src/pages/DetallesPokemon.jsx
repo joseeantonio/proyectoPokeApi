@@ -17,6 +17,7 @@ const DetallesPokemon = () => {
 
     const ObetenerDetalles = async (url) => {
         try {
+            debugger
             let api = await fetch(url)
             let datos = await api.json()
             setData(datos)

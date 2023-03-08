@@ -23,6 +23,7 @@ const NavBar = () => {
                                 <div>
                                     <li><NavLink to="/pokemons">PERSONAJES</NavLink></li>
                                     <li><NavLink to="/contacto">CONTACTO</NavLink></li>
+                                    <li><NavLink to="/favoritos">FAVORITOS</NavLink></li>
                                     <button className='btn btn-dark'
                                             onClick={cerrarSesion}
                                     >

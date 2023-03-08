@@ -8,6 +8,7 @@ import Register from "../pages/Register.jsx";
 import LayoutPrivate from "../layouts/LayoutPrivate.jsx";
 import Login from "../pages/Login.jsx";
 import Contacto from "../pages/Contacto.jsx";
+import Favoritos from "../pages/Favoritos.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -39,6 +40,9 @@ export const router = createBrowserRouter([
                     {
                         path: '/contacto',
                         element: <Contacto />
+                    },{
+                        path: '/favoritos',
+                        element: <Favoritos />
                     },
                 ]
             }
