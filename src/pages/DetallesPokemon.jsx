@@ -120,6 +120,7 @@ const DetallesPokemon = () => {
                 })
             }
         }, 1000)
+        return () => clearTimeout(alertaDeTiempo)
     }, [])
 
 
