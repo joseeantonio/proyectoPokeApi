@@ -24,8 +24,6 @@ const Login = () => {
 
     const iniciarSesion = async () => {
         setUsuarios([...usuarios, datos])
-
-        console.log(datos)
         if (localStorage.getItem('password')!==datos.password && localStorage.getItem('email')===datos.email){
             setError('Contraseña incorrecta')
         }
