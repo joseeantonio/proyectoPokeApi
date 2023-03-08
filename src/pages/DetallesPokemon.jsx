@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {NavLink, useParams} from "react-router-dom";
+import {useUserContext} from "../context/UserContext.jsx";
 
 const DetallesPokemon = () => {
 
     const {id} = useParams()
+    const { usuario, setUsuario } = useUserContext()
     const [data, setData] = useState({})
     const [url,setUrl] = useState(`https://pokeapi.co/api/v2/pokemon/${id}`)
     const [error, setError] = useState(null)
@@ -77,7 +79,6 @@ const DetallesPokemon = () => {
                 }
             }
 
-
             //guardo descripcion
             for (let i=0;i<datosDescripcion.descriptions.length;i++){
                 if (datosDescripcion.descriptions[i].language.name==='es'){
@@ -100,6 +101,34 @@ const DetallesPokemon = () => {
         ObetenerDetalles(url)
     },[])
 
+
+    const anadirFavorito = () => {
+        let favoritos = []
+        if (JSON.parse(localStorage.getItem('favoritos'))){
+            favoritos = JSON.parse(localStorage.getItem('favoritos'))
+        }
+
+        let estaEnFavoritos = null
+        for (let i=0;i<favoritos.length;i++){
+            if (favoritos[i].id === data.id){
+                estaEnFavoritos = true
+            }
+        }
+
+        let favoritosFinal = []
+        if (estaEnFavoritos){
+            for (let i=0;i<favoritos.length;i++){
+                if (favoritos[i].id !== data.id){
+                    favoritosFinal.push(favoritos[i].id)
+                }
+            }
+            localStorage.setItem('favoritos', JSON.stringify(favoritosFinal))
+        }else{
+            favoritos.push(data)
+            localStorage.setItem('favoritos', JSON.stringify(favoritos))
+        }
+
+    }
 
     return(
         <div className='DetallesPokemon'>
@@ -124,6 +153,11 @@ const DetallesPokemon = () => {
                         <div className='tipos'>
                             {tipos}
                         </div>
+
+                        {usuario &&
+                            (<button onClick={anadirFavorito}>Añadir a favorito</button>)
+                        }
+
                     </div>)
             }
             </div>
