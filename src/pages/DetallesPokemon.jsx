@@ -120,16 +120,17 @@ const DetallesPokemon = () => {
                     confirmButtonText: '¡Entendido!'
                 })
             }
-        }, 1000)
+        }, 100)
         return () => clearTimeout(alertaDeTiempo)
     }
 
 
 
     useEffect(()=>{
-        ObetenerDetalles(url)
-        cogerDescripcion()
+        // funcionSetTimeOut()
+        ObetenerDetalles(url).then(r => cogerDescripcion())
         funcionSetTimeOut()
+
     },[])
 
     useEffect(()=>{
