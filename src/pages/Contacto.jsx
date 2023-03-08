@@ -3,21 +3,21 @@ import {NavLink, useNavigate} from "react-router-dom";
 import swal from "sweetalert2";
 
 const Contacto = () => {
-
+    //Definimos los datos necesarios
     const [error,setError] = useState()
     const [datos,setDatos] = useState({
         email: '',
         asunto: '',
         mensaje: '',
     })
-
+    //Funcion cada vez que escribamos en cualquier input, para guardar los valores
     const handleChange = (e) => {
         setDatos({
             ...datos,
             [e.target.name]: e.target.value,
         })
     }
-
+    //Validamos
     const validar = (e) => {
         e.preventDefault()
         const { asunto,email,mensaje} = datos
@@ -59,7 +59,6 @@ const Contacto = () => {
             return;
         }
     }
-
     return(
         <div className='Contacto'>
             <div className="caja-de-fuera">

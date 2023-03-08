@@ -4,7 +4,7 @@ import {useUserContext} from "../context/UserContext.jsx";
 import Swal from "sweetalert2";
 
 const DetallesPokemon = () => {
-
+    //Definimos datos necesarios
     const {id} = useParams()
     const { usuario, setUsuario } = useUserContext()
     const [data, setData] = useState({})
@@ -16,12 +16,14 @@ const DetallesPokemon = () => {
     const [evoluciones,setEvoluciones] = useState([])
     const [favorito,setFavorito] = useState(false)
 
+    //Cogemos datos de la api para obtener nombre, tipos etc
     const ObetenerDetalles = async (url) => {
         try {
             let api = await fetch(url)
             let datos = await api.json()
             setData(datos)
-            //Una clase por cada tipo
+            //Una clase por cada tipo y lo almacenamos en esta variable tipos y una vez terminemos de recorrer
+            //todos pues le damos el valor a un estado definido arriba llamado tipos
             let tipos = []
             for (let x=0;x<datos.types.length;x++) {
                 if (datos.types[x].type.name==='grass'){
@@ -80,7 +82,6 @@ const DetallesPokemon = () => {
                 }
             }
             setTipos(tipos)
-
         }catch (e){
             setError('No se ha podido coger los datos de la api')
         }finally {
@@ -88,18 +89,18 @@ const DetallesPokemon = () => {
         }
         return
     }
+    //Funcion para coger la descripcion del pokemon
     const cogerDescripcion = async () => {
         try {
             let descripcion = await fetch(`https://pokeapi.co/api/v2/characteristic/${id}`)
             let datosDescripcion = await descripcion.json()
-
-            //guardo descripcion
             for (let i=0;i<datosDescripcion.descriptions.length;i++){
                 if (datosDescripcion.descriptions[i].language.name==='es'){
                     setDescripcion(datosDescripcion.descriptions[i].description)
                     return
                 }
             }
+            //guardo descripcion
             setDescripcion(datosDescripcion)
         }catch (e){
             setError('No se ha podido coger los datos de la api')
@@ -108,8 +109,7 @@ const DetallesPokemon = () => {
         }
         return
     }
-
-
+    //SetTimeOut para advertir al usuario de la opcion de poder añadir a favoritos
     const funcionSetTimeOut = () => {
         const alertaDeTiempo = setTimeout(() => {
             if (!usuario){
@@ -124,15 +124,15 @@ const DetallesPokemon = () => {
         return () => clearTimeout(alertaDeTiempo)
     }
 
-
-
     useEffect(()=>{
         // funcionSetTimeOut()
         ObetenerDetalles(url).then(r => cogerDescripcion())
         funcionSetTimeOut()
-
     },[])
 
+    //Cuando cambie data que es la informacion del pokemon recorreremos la lista de favoritos almacenada en el localStorage
+    // En la que comprobaremos si esta este id del pokemon o no y si esta cambiar un estado definidi arriba,
+    // para poder cambiar el boton si esta o no esta.
     useEffect(()=>{
         let listafavoritos = []
         if (JSON.parse(localStorage.getItem('favoritos'))){
@@ -145,7 +145,7 @@ const DetallesPokemon = () => {
         }
     },[data])
 
-
+    //Funcion que segun si esta o no en la lista de favoritos del localStorage añadira o aliminara de esa lista ese objeto.
     const anadirFavorito = () => {
         let favoritos = []
         if (JSON.parse(localStorage.getItem('favoritos'))){
@@ -172,7 +172,6 @@ const DetallesPokemon = () => {
             setFavorito(true)
         }
     }
-
     return(
         <div className='DetallesPokemon'>
             {
@@ -196,7 +195,6 @@ const DetallesPokemon = () => {
                         <div className='tipos'>
                             {tipos}
                         </div>
-
                         {usuario &&
                             (
                                 favorito ?
@@ -207,7 +205,6 @@ const DetallesPokemon = () => {
                                         className="far fa-heart"></i> Añadir a favoritos</button></div>
                             )
                         }
-
                     </div>)
             }
             </div>

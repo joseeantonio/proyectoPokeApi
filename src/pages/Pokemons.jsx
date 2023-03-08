@@ -8,8 +8,11 @@ const Pokemons = () => {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    //Son el numero de pokemons que se van a mostrar
     const [limit,setLimit] = useState(21)
+    //A partir de que pokemon va a ser esos 21
     const [offset,setOffset] = useState(0)
+    //N de pagina
     const [pagina,setPagina] = useState(1)
 
     //todos los pokemons
@@ -25,6 +28,7 @@ const Pokemons = () => {
         setBusqueda(e.target.value)
     }
     //funcion que llamo dentro de otra funcion para añadir pokemon a mostrar de la busqueda
+    //Segun si es un numero o letras va a buscar por id o por nombre
     function añadirPokemon(nombre){
         for (let i=0;i<todosLosPokemons.length;i++){
             if (pokemonBusqueda.length<21){
@@ -98,14 +102,14 @@ const Pokemons = () => {
         return
     }
 
+    //Estas variables estan definidas para filtrar por tipo, generacion y habitat
     const [buscandoPorFiltros,setBuscandoPorFiltros] = useState(false)
     const [tipo,setTipo] = useState('all')
     const [generacion,setGeneracion] = useState('all')
     const [habitat,setHabitat] = useState('all')
     let [pokemonsFiltros,setPokemonsFiltros] = useState([])
 
-
-
+    //Funcion para saber si un pokemon pertenece a ese habitat
     const anadirHabitat = async (pokemon) => {
         let apiHabitat = await fetch(`https://pokeapi.co/api/v2/pokemon-habitat/${habitat}`)
         let datosHabitat = await apiHabitat.json()
@@ -115,7 +119,7 @@ const Pokemons = () => {
             }
         }
     }
-
+    //Funcion para saber si un pokemon pertenece a esa generacion
     const anadirGeneracion = (todosLosPokemonsX,datos) => {
         if (generacion==='generation-i'){
             if (datos.id<152){
@@ -156,6 +160,7 @@ const Pokemons = () => {
         }
     }
 
+    //Funcion para filtrar segun los parametros que esten completados en ese momento
     const buscarPorFiltros = async () => {
         setPokemonsFiltros((pokemonsFiltros=[]))
         setLoading(true)
@@ -200,6 +205,7 @@ const Pokemons = () => {
         setLoading(false)
     }
 
+    //Nos sirve para que cuando escriba en el input de busqueda y le de al enter haga la funcion
     const enter = (e) => {
         if (e.key === 'Enter') {
             buscar()
@@ -214,10 +220,10 @@ const Pokemons = () => {
         ObetenerDatosApi()
     },[offset])
 
+    //Si cambia alguno de los campos de los filtros se ejecutara esta funcion
     useEffect(()=>{
         buscarPorFiltros()
     },[generacion,tipo,habitat])
-
 
     return (
         <div className='Pokemons'>

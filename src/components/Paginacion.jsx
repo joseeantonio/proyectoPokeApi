@@ -1,6 +1,9 @@
 import React from "react";
 
 const Paginacion = (props) => {
+    //Obtenemos como props el offset que vamos a utilizar como a partir de que pokemons vamos a mostrar y siempre seran 21 en total,
+    // y tambien recibimos varias funuciones como pagSiguiente y pagAnterior que van a modicficar el offset, segun el
+    // offset mostrara el boton de pagAnterior o no
     return(
                 props.offset<=0
                 ?

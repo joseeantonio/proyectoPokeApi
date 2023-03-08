@@ -4,10 +4,9 @@ import Logo from '../images/logo_pokemon.png'
 import {useUserContext} from "../context/UserContext.jsx";
 
 const NavBar = () => {
-
     //Cogemos valor del usuario del context
     const { usuario, setUsuario } = useUserContext()
-
+    //Funcion para a la hora de cerrar sesion
     const cerrarSesion = () => {
         setUsuario(null)
     }
@@ -20,6 +19,7 @@ const NavBar = () => {
                     <nav className="menu_ordenador">
                         <ul>
                             {usuario ? (
+                                // Tenemos diferentes NavBar segun si el usuario esta registrado o no
                                 <div>
                                     <li><NavLink to="/pokemons">PERSONAJES</NavLink></li>
                                     <li><NavLink to="/contacto">CONTACTO</NavLink></li>
@@ -40,9 +40,6 @@ const NavBar = () => {
 
                         </ul>
                     </nav>
-                    <button onClick={() => {
-                        document.querySelector('.menu_hamburguesa').classList.toggle('mostrar');
-                    }} className="menu_hamburguesa"><i className="fas fa-bars"></i></button>
                 </section>
             </header>
         </div>

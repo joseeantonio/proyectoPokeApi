@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 
 const Filtros = (props) => {
-
+    //Obtenemos por props las funciones necesarias para que se puedan llevar a cabo los filtros
     return(
         <div className='filtros'>
             <select name='tipos' value={props.tipo} onChange={ (e) => props.setTipo( e.target.value) }>
@@ -53,7 +53,5 @@ const Filtros = (props) => {
             </select>
         </div>
     )
-
 }
-
 export default Filtros
