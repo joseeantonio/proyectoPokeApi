@@ -114,16 +114,20 @@
     border-radius: 10px;
   }
 
+  .fa-heart{
+    color: red;
+  }
+
   .btn-eliminar>button{
     padding: 10px;
     border-radius: 10px;
   }
 
   .btn-anadir>button:hover{
-    background-color: rgba(24, 95, 202, 0.42);
+    background-color: #c9fdc9;
   }
   .btn-eliminar>button:hover{
-    background-color: rgba(255, 0, 0, 0.89);
+    background-color: rgba(255, 196, 196, 0.89);
   }
 
 }
