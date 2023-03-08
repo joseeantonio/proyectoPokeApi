@@ -17,7 +17,6 @@ const DetallesPokemon = () => {
 
     const ObetenerDetalles = async (url) => {
         try {
-            debugger
             let api = await fetch(url)
             let datos = await api.json()
             setData(datos)
@@ -101,7 +100,6 @@ const DetallesPokemon = () => {
 
 
     useEffect(()=>{
-        debugger
         ObetenerDetalles(url)
     },[])
 
@@ -119,7 +117,6 @@ const DetallesPokemon = () => {
 
 
     const anadirFavorito = () => {
-        debugger
         let favoritos = []
         if (JSON.parse(localStorage.getItem('favoritos'))){
             favoritos = JSON.parse(localStorage.getItem('favoritos'))
