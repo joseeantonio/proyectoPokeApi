@@ -180,9 +180,12 @@ const DetallesPokemon = () => {
                         </div>
 
                         {usuario &&
-                            (<button onClick={anadirFavorito}>{
-                                favorito ? 'Eliminar de favoritos' : 'Añadir a favoritos'
-                            }</button>)
+                            (
+                                favorito ?
+                                    (<div className='btn-eliminar' ><button onClick={anadirFavorito}>+ Eliminar de favoritos</button></div>)
+                                    :
+                                    <div className='btn-anadir' ><button onClick={anadirFavorito}>+ Añadir a favoritos</button></div>
+                            )
                         }
 
                     </div>)
