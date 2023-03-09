@@ -342,6 +342,7 @@ const Pokemons = () => {
                                 <Cards
                                     pokemons={pokemonBusqueda}
                                 />
+
                             </div>
                     }
                 </div>
