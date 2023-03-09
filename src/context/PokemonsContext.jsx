@@ -14,7 +14,6 @@ const PokemonProvider = ({ children }) => {
                 let apiDetalles = await fetch(`https://pokeapi.co/api/v2/pokemon/${datos[i].name}`)
                 let datosDetalles = await apiDetalles.json()
                 datosDetalles.url=datos[i].url
-                debugger
                 todosLosPokemons.push(datosDetalles)
             }
         }finally {
