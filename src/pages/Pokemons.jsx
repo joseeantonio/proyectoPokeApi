@@ -212,7 +212,6 @@ const Pokemons = () => {
         setBuscandoPorFiltros(true)
         setLoading(false)
     }
-
     //Nos sirve para que cuando escriba en el input de busqueda y le de al enter haga la funcion
     const enter = (e) => {
         if (e.key === 'Enter') {
