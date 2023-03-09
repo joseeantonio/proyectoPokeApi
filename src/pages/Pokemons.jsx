@@ -232,7 +232,7 @@ const Pokemons = () => {
 
     return (
         <div className='Pokemons'>
-            {loading || todosLosPokemons.length>50
+            {loading || todosLosPokemons.length<50
                 ?
                 <div className='cargando'>
                     <FadeLoader
