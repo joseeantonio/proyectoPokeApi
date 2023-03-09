@@ -51,6 +51,5 @@ const CardPokemon = (props) => {
             }
         </div>
     )
-
 }
 export default CardPokemon
