@@ -124,6 +124,7 @@ const Pokemons = () => {
         let datosHabitat = await apiHabitat.json()
         for (let x = 0; x < datosHabitat.pokemon_species.length; x++) {
             if (datosHabitat.pokemon_species[x].name === pokemon.name) {
+                debugger
                 return true
             }
         }
@@ -132,6 +133,7 @@ const Pokemons = () => {
     const anadirGeneracion = (datos) => {
         if (generacion==='generation-i'){
             if (datos.id<152){
+                debugger
                 return true
             }
         }else if(generacion==='generation-ii'){
@@ -174,7 +176,6 @@ const Pokemons = () => {
         setPokemonsFiltros((pokemonsFiltros=[]))
         setLoading(true)
         for (let i = 0; i < todosLosPokemons.length; i++) {
-            debugger
                 let tiposPokemon = []
                 for (let x=0;x<todosLosPokemons[i].types.length;x++) {
                     tiposPokemon.push(todosLosPokemons[i].types[x].type.name)
@@ -204,7 +205,9 @@ const Pokemons = () => {
                         pokemonsFiltros.push(todosLosPokemons[i])
                     }
                 }else if (tipo==='all' && generacion!=='all' && habitat!=='all'){
-                    if (await anadirHabitat(todosLosPokemons[i]) && anadirGeneracion(todosLosPokemons)){
+                    debugger
+                    if (anadirGeneracion(todosLosPokemons[i]) && await anadirHabitat(todosLosPokemons[i])){
+                        debugger
                         pokemonsFiltros.push(todosLosPokemons[i])
                     }
                 }
@@ -229,7 +232,6 @@ const Pokemons = () => {
 
     //Si cambia alguno de los campos de los filtros se ejecutara esta funcion
     useEffect(()=>{
-        debugger
         buscarPorFiltros()
     },[generacion,tipo,habitat])
 
