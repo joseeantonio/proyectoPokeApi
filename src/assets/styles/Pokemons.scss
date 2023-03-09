@@ -78,6 +78,23 @@
 
   }
 
+  .divRestablecerFiltros{
+    display: flex;
+    justify-content: center;
+    margin: 30px 30px 0px;
+  }
+  .btn-restablecer-filtros{
+    padding: 8px;
+    background-color: #ff9292;
+    border-radius: 10px;
+  }
+
+  .fa-search{
+    background-color: black;
+    color: white;
+    padding: 6px 8px 8px;
+  }
+
 
   background-color: rgba(24, 95, 202, 0.42);
   min-height: 700px;

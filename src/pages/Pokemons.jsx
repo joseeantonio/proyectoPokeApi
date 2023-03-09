@@ -49,6 +49,7 @@ const Pokemons = () => {
     }
     //funcion de busqueda
     const buscar = () => {
+        restablecerFiltros()
         const nombre = busqueda
         if (nombre.length===0){
             setBuscando(false)
@@ -173,6 +174,8 @@ const Pokemons = () => {
 
     //Funcion para filtrar segun los parametros que esten completados en ese momento
     const buscarPorFiltros = async () => {
+        restablecerFiltros()
+        setBusqueda('')
         setPokemonsFiltros((pokemonsFiltros=[]))
         setLoading(true)
         for (let i = 0; i < todosLosPokemons.length; i++) {
@@ -235,6 +238,11 @@ const Pokemons = () => {
         buscarPorFiltros()
     },[generacion,tipo,habitat])
 
+    const restablecerFiltros = () => {
+        setBuscandoPorFiltros(false)
+        setBuscando(false)
+    }
+
     return (
         <div className='Pokemons'>
             {loading || todosLosPokemons.length===0
@@ -260,6 +268,7 @@ const Pokemons = () => {
                             onChange={handleChange}
                             placeholder="Buscar por nombre o por id"
                         />
+                        <i className="fas fa-search" onClick={buscar}></i>
                     </div>
                     <div className='filtros'>
                         <Filtros
@@ -273,8 +282,11 @@ const Pokemons = () => {
                             habitat={habitat}
                         />
                     </div>
+                    <div className='divRestablecerFiltros'>
+                        <button className='btn-restablecer-filtros' onClick={restablecerFiltros}>Restablecer Filtros</button>
+                    </div>
 
-                    {buscandoPorFiltros && tipo && pokemonsFiltros.length>0 ?
+                    {buscandoPorFiltros && pokemonsFiltros.length>0 ?
                         <div>
                             <h1 className='h1-busqueda'>Resultados de la busqueda ({pokemonsFiltros.length})</h1>
                             <Cards pokemons={pokemonsFiltros}/>
