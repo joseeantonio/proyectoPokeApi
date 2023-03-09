@@ -93,7 +93,16 @@ const Pokemons = () => {
         try {
             let api = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`)
             let datos = await api.json()
-            setTodosLosPokemons(datos.results)
+            datos = datos.results
+            console.log(datos)
+            let listaDetalles = []
+            for (let i=0;i<datos.length;i++){
+                let apiDetalles = await fetch(`https://pokeapi.co/api/v2/pokemon/${datos[i].name}`)
+                let datosDetalles = await apiDetalles.json()
+                datosDetalles.url=datos[i].url
+                listaDetalles.push(datosDetalles)
+            }
+            setTodosLosPokemons(listaDetalles)
         }catch (e){
             setError('No se ha podido coger los datos de la api')
         }finally {
@@ -120,7 +129,7 @@ const Pokemons = () => {
         }
     }
     //Funcion para saber si un pokemon pertenece a esa generacion
-    const anadirGeneracion = (todosLosPokemonsX,datos) => {
+    const anadirGeneracion = (datos) => {
         if (generacion==='generation-i'){
             if (datos.id<152){
                 return true
@@ -165,14 +174,13 @@ const Pokemons = () => {
         setPokemonsFiltros((pokemonsFiltros=[]))
         setLoading(true)
         for (let i = 0; i < todosLosPokemons.length; i++) {
-                let api = await fetch(`https://pokeapi.co/api/v2/pokemon/${todosLosPokemons[i].name}`)
-                let datos = await api.json()
+            debugger
                 let tiposPokemon = []
-                for (let x=0;x<datos.types.length;x++) {
-                    tiposPokemon.push(datos.types[x].type.name)
+                for (let x=0;x<todosLosPokemons[i].types.length;x++) {
+                    tiposPokemon.push(todosLosPokemons[i].types[x].type.name)
                 }
                 if (tipo==='all' && generacion!=='all' && habitat==='all'){
-                     if(anadirGeneracion(todosLosPokemons[i],datos)){
+                     if(anadirGeneracion(todosLosPokemons[i])){
                          pokemonsFiltros.push(todosLosPokemons[i])
                      }
                 }else if (generacion==='all' && tipo!=='all' && habitat==='all'){
@@ -180,11 +188,11 @@ const Pokemons = () => {
                         pokemonsFiltros.push(todosLosPokemons[i])
                     }
                 }else if (tipo!=='all' && generacion!=='all' && habitat==='all'){
-                    if (tiposPokemon.includes(tipo) && anadirGeneracion(todosLosPokemons[i],datos)){
+                    if (tiposPokemon.includes(tipo) && anadirGeneracion(todosLosPokemons[i])){
                         pokemonsFiltros.push(todosLosPokemons[i])
                     }
                 }else if (tipo!=='all' && generacion!=='all' && habitat!=='all'){
-                    if (tiposPokemon.includes(tipo) && anadirGeneracion(todosLosPokemons[i],datos) && await anadirHabitat(todosLosPokemons[i])){
+                    if (tiposPokemon.includes(tipo) && anadirGeneracion(todosLosPokemons[i]) && await anadirHabitat(todosLosPokemons[i])){
                         pokemonsFiltros.push(todosLosPokemons[i])
                     }
                 }else if(tipo!=='all' && generacion==='all' && habitat!=='all'){
@@ -196,7 +204,7 @@ const Pokemons = () => {
                         pokemonsFiltros.push(todosLosPokemons[i])
                     }
                 }else if (tipo==='all' && generacion!=='all' && habitat!=='all'){
-                    if (await anadirHabitat(todosLosPokemons[i]) && anadirGeneracion(todosLosPokemons,datos)){
+                    if (await anadirHabitat(todosLosPokemons[i]) && anadirGeneracion(todosLosPokemons)){
                         pokemonsFiltros.push(todosLosPokemons[i])
                     }
                 }
@@ -222,12 +230,13 @@ const Pokemons = () => {
 
     //Si cambia alguno de los campos de los filtros se ejecutara esta funcion
     useEffect(()=>{
+        debugger
         buscarPorFiltros()
     },[generacion,tipo,habitat])
 
     return (
         <div className='Pokemons'>
-            {loading
+            {loading || todosLosPokemons.length===0
                 ?
                 <div className='cargando'>
                     <FadeLoader
