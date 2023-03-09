@@ -10,14 +10,12 @@ const PokemonProvider = ({ children }) => {
             let api = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`)
             let datos = await api.json()
             datos = datos.results
-            let listaDetalles = []
             for (let i=0;i<datos.length;i++){
                 let apiDetalles = await fetch(`https://pokeapi.co/api/v2/pokemon/${datos[i].name}`)
                 let datosDetalles = await apiDetalles.json()
                 datosDetalles.url=datos[i].url
-                listaDetalles.push(datosDetalles)
+                todosLosPokemons.push(datosDetalles)
             }
-            setTodosLosPokemons(listaDetalles)
         }finally {
         }
         return
