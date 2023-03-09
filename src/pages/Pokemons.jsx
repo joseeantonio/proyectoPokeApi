@@ -208,11 +208,13 @@ const Pokemons = () => {
                         pokemonsFiltros.push(todosLosPokemons[i])
                     }
                 }else if (tipo==='all' && generacion!=='all' && habitat!=='all'){
-                    debugger
                     if (anadirGeneracion(todosLosPokemons[i]) && await anadirHabitat(todosLosPokemons[i])){
-                        debugger
                         pokemonsFiltros.push(todosLosPokemons[i])
                     }
+                }else if (tipo==='all' && generacion==='all' && habitat==='all'){
+                    setBuscandoPorFiltros(false)
+                    setLoading(false)
+                    return
                 }
         }
         setBuscandoPorFiltros(true)
@@ -266,7 +268,7 @@ const Pokemons = () => {
                             type="search"
                             value={busqueda}
                             onChange={handleChange}
-                            placeholder="Buscar por nombre o por id"
+                            placeholder="Buscar por nombre o id"
                         />
                         <i className="fas fa-search" onClick={buscar}></i>
                     </div>
@@ -291,6 +293,14 @@ const Pokemons = () => {
                             <h1 className='h1-busqueda'>Resultados de la busqueda ({pokemonsFiltros.length})</h1>
                             <Cards pokemons={pokemonsFiltros}/>
                         </div>
+                        : buscandoPorFiltros && pokemonsFiltros.length===0 ?
+                            <div>
+                                <h1 className='h1-busqueda'>No se ha encontrado ningun pokemon con estas caracteristicas</h1>
+                            </div>
+                        :buscando && pokemonBusqueda.length===0 ?
+                                <div>
+                                    <h1 className='h1-busqueda'>No se ha encontrado ningun pokemon con este id o nombre.</h1>
+                                </div>
                         : !buscando ?
                             <div>
                                 <Cards
