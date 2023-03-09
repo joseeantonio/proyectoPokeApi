@@ -126,7 +126,6 @@ const Pokemons = () => {
         let datosHabitat = await apiHabitat.json()
         for (let x = 0; x < datosHabitat.pokemon_species.length; x++) {
             if (datosHabitat.pokemon_species[x].name === pokemon.name) {
-                debugger
                 return true
             }
         }
@@ -135,7 +134,6 @@ const Pokemons = () => {
     const anadirGeneracion = (datos) => {
         if (generacion==='generation-i'){
             if (datos.id<152){
-                debugger
                 return true
             }
         }else if(generacion==='generation-ii'){
