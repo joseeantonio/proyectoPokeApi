@@ -3,6 +3,7 @@ import Paginacion from "../components/Paginacion.jsx";
 import Cards from "../components/Cards.jsx";
 import Filtros from "../components/Filtros.jsx";
 import {FadeLoader} from "react-spinners";
+import {usePokemonContext} from "../context/PokemonsContext.jsx";
 
 const Pokemons = () => {
     const [data, setData] = useState([])
@@ -15,8 +16,8 @@ const Pokemons = () => {
     //N de pagina
     const [pagina,setPagina] = useState(1)
 
-    //todos los pokemons
-    const [todosLosPokemons,setTodosLosPokemons] = useState([])
+    //todos los pokemons del context
+    const {todosLosPokemons,setTodosLosPokemons} = usePokemonContext()
     //lo que busco
     const [busqueda,setBusqueda] = useState('')
     //pokemons de la busqueda
