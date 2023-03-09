@@ -78,6 +78,7 @@ const Pokemons = () => {
     }
     //Funcion para coger 21 pokemons segun su offset
     const ObetenerDatosApi = async () => {
+        setLoading(true)
         try {
             let api = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`)
             let datos = await api.json()

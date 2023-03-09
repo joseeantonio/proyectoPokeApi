@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import {BeatLoader} from "react-spinners";
 
 const CardPokemon = (props) => {
     //Este componente sirve para recibir la url de un pokemons por props y sacar la informacion para crear una carta
@@ -33,7 +34,13 @@ const CardPokemon = (props) => {
             {
                 loading
                 ?
-                    <h1>Cargando...</h1>
+                    <div className='carta'>
+                        <div className='cargando-card'>
+                            <BeatLoader
+                                color="#000000"
+                            />
+                        </div>
+                    </div>
                     :
                     <div className='carta'>
                         <Link to={`/pokemons/${data.id}`}>
