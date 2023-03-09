@@ -92,27 +92,6 @@ const Pokemons = () => {
         }
         return
     }
-    //cojo todos los pokemons para filtrar la busqueda
-    const ObetenerDatosApiTodosPokemons = async () => {
-        try {
-            let api = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`)
-            let datos = await api.json()
-            datos = datos.results
-            let listaDetalles = []
-            for (let i=0;i<datos.length;i++){
-                let apiDetalles = await fetch(`https://pokeapi.co/api/v2/pokemon/${datos[i].name}`)
-                let datosDetalles = await apiDetalles.json()
-                datosDetalles.url=datos[i].url
-                listaDetalles.push(datosDetalles)
-            }
-            setTodosLosPokemons(listaDetalles)
-        }catch (e){
-            setError('No se ha podido coger los datos de la api')
-        }finally {
-            setLoading(false)
-        }
-        return
-    }
 
     //Estas variables estan definidas para filtrar por tipo, generacion y habitat
     const [buscandoPorFiltros,setBuscandoPorFiltros] = useState(false)
@@ -241,7 +220,6 @@ const Pokemons = () => {
     },[generacion,tipo,habitat])
 
     useEffect(()=>{
-        ObetenerDatosApiTodosPokemons()
         setPokemonsInicio(true)
     },[])
 
@@ -254,7 +232,7 @@ const Pokemons = () => {
 
     return (
         <div className='Pokemons'>
-            {loading || todosLosPokemons.length<50
+            {loading || todosLosPokemons.length>50
                 ?
                 <div className='cargando'>
                     <FadeLoader
