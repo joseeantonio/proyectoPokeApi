@@ -49,6 +49,7 @@ const Pokemons = () => {
     }
     //funcion de busqueda
     const buscar = () => {
+        setPokemonsInicio(false)
         restablecerFiltros()
         const nombre = busqueda
         if (nombre.length===0){
@@ -215,9 +216,11 @@ const Pokemons = () => {
                 }else if (tipo==='all' && generacion==='all' && habitat==='all'){
                     setBuscandoPorFiltros(false)
                     setLoading(false)
+                    setPokemonsInicio(true)
                     return
                 }
         }
+        setPokemonsInicio(false)
         setBuscandoPorFiltros(true)
         setLoading(false)
     }
@@ -228,9 +231,6 @@ const Pokemons = () => {
         }
     };
 
-    useEffect(()=>{
-        ObetenerDatosApiTodosPokemons()
-    },[])
     //este useEffect sirev para cuando cambie el offset llame a la funcion , esto nos sirve para la paginacion
     useEffect(()=>{
         ObetenerDatosApi()
@@ -239,12 +239,20 @@ const Pokemons = () => {
     //Si cambia alguno de los campos de los filtros se ejecutara esta funcion
     useEffect(()=>{
         buscarPorFiltros()
+
     },[generacion,tipo,habitat])
+
+    useEffect(()=>{
+        ObetenerDatosApiTodosPokemons()
+        setPokemonsInicio(true)
+    },[])
 
     const restablecerFiltros = () => {
         setBuscandoPorFiltros(false)
         setBuscando(false)
+        setPokemonsInicio(true)
     }
+    const [pokemonsInicio,setPokemonsInicio] = useState(true)
 
     return (
         <div className='Pokemons'>
@@ -294,7 +302,20 @@ const Pokemons = () => {
                             <h1 className='h1-busqueda'>Resultados de la busqueda ({pokemonsFiltros.length})</h1>
                             <Cards pokemons={pokemonsFiltros}/>
                         </div>
-                        : buscandoPorFiltros && pokemonsFiltros.length===0 ?
+                        : pokemonsInicio && !buscando ?
+                            <div>
+                                <Cards
+                                    pokemons={data.results}
+                                />
+                                <Paginacion
+                                    limit={limit}
+                                    offset={offset}
+                                    pagAnterior={pagAnterior}
+                                    pagSiguiente={pagSiguiente}
+                                    pagina={pagina}
+                                />
+                            </div>
+                        : buscandoPorFiltros && pokemonsFiltros.length===0 && pokemonsInicio===false ?
                             <div>
                                 <h1 className='h1-busqueda'>No se ha encontrado ningun pokemon con estas caracteristicas</h1>
                             </div>
