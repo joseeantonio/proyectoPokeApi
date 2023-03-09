@@ -7,7 +7,7 @@ const Cards = ({pokemons}) => {
     return (
         <section>
             { pokemons?.map(pokemon => (
-                <div className='pokemon'>
+                <div key={pokemon.name} className='pokemon'>
                     <li key={pokemon.name}>
                         <CardPokemon
                             urlDetalles={pokemon.url}

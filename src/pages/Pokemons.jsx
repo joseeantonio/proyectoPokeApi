@@ -97,7 +97,6 @@ const Pokemons = () => {
             let api = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`)
             let datos = await api.json()
             datos = datos.results
-            console.log(datos)
             let listaDetalles = []
             for (let i=0;i<datos.length;i++){
                 let apiDetalles = await fetch(`https://pokeapi.co/api/v2/pokemon/${datos[i].name}`)
